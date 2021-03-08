@@ -1,0 +1,532 @@
+% This is file JFM2esam.tex
+% first release v1.0, 20th October 1996
+%       release v1.01, 29th October 1996
+%       release v1.1, 25th June 1997
+%       release v2.0, 27th July 2004
+%       release v3.0, 16th July 2014
+%       release v4.0, 15th June 2017
+%   (based on JFMsampl.tex v1.3 for LaTeX2.09)
+% Copyright (C) 1996, 1997, 2014, 2017 Cambridge University Press
+
+\documentclass{jpp}
+\usepackage{graphicx}
+% \usepackage{epstopdf, epsfig}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{physics}
+
+\shorttitle{Summary of Plasma Diagnostic Methods}
+\shortauthor{Summary of Plasma Diagnostic Methods}
+
+\title{Summary of Plasma Diagnostic Methods}
+
+\author{Evan Bluhm}
+% \aff{1}
+%   \corresp{\email{jpp@damtp.cam.ac.uk}},
+%   H. - C. Smith\aff{1}
+%  \and J. Q.  Public\aff{2}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+An abstract could go here? Eventually? I sure hope so.
+\end{abstract}
+
+\section{Introduction}
+
+{\Large TODO \par}
+
+\section{Magnetic Field Diagnostics}
+
+\subsection{B-dot Field Probes}
+
+The simplest magnetic field measurement is obtained by straightforward application of Faraday's law to a loop of conducting wire. Assuming an open circuit, a changing magnetic field will induce a voltage $V_{emf}$ :
+
+\begin{equation*}
+\int_{area} \pdv{\vec B}{t} \cdot \dd \vec S = - \oint _{loop} \vec E \cdot \dd \vec l = - V_{emf}
+\end{equation*}
+
+For a rigid loop, the voltage across the ends of the coil gives the component of $\dot{\vec B}$ normal to the loop area, averaged over the area of the loop. The absolute field strength can be recovered by integrating the signal in time if the initial field strength is known. There is an inherent trade-off between spatial resolution and signal strength; $\dot{\vec B}$ is spatially averaged over the coil area, and the signal intensity is proportional to the coil area. B-dot coils are typically small ($r \sim 1-100 mm$) for spatial resolution, and feature many coil windings to increase signal intensity.
+
+A B-dot coil diagnostic circuit must be calibrated using a known time-varying magnetic field source, typically a current-carrying wire. While one may compute the inductive response of the coil directly from its geometry, coils are often wound by hand with a potentially non-uniform cross-sectional area and calibration gives a much more accurate estimation of the magnetic field. The calibration provides the constant of proportionality between $\dot {\vec B}_{avg}$ and the measured voltage, and more importantly takes into account the finite impedances of the coil, transmission circuit, integrator, and meter \citep{doi:10.1063/1.3246785}. A non-idealized measurement circuit requires a nonzero current in order to integrate and/or digitize the signal. Standard s-domain analysis using Laplace transforms is an effective method for determining the frequency response of the diagnostic circuit for a given form of $\dot{\vec B}(t)$, such as a triangle wave impulse. Once an expression for the response of the diagnostic circuit is obtained in the s-domain, the resistance and capacitance of the meter and integrator can be tuned to minimize oscillations on the timescale of interest while maintaining an acceptable rise time for fast input signals.
+
+\subsection{Rogowski Coils}
+
+A Rogowski coil is a solenoidal coil used to directly measure alternating and transient currents flowing through its center, as shown in figure \ref{fig:rogowski}. Instead of measuring the local magnetic field, the Rogowski coil acts as a specially constructed mutual inductor with any current flowing through the loop area, according to Ampere's law. If the coil is tightly wound ($r_c \gg (b - a)$, as shown in figure \ref{fig:rogowski}) and the spacing between turns is small compared to the magnetic field gradient, then the voltage out of the Rogowski coil $V_c$ is related to the current enclosed by:
+
+\begin{equation*}
+V_c = N A \mu \dot I
+\end{equation*}
+
+where $N$ is the number of turns per unit length, $A$ is the area enclosed by the coil, $\mu$ is the permeability of the medium in the solenoid. As with B-dot probes the voltage measured across the coil gives the time derivative of the quantity of interest, and must be integrated by means of an electronic integrator or numerical integration after digitization. Unlike B-dot probes, the signal is insensitive to the exact shape of the coil as long as the coil forms a complete loop, simplifying both installation and calibration. Because the coil is wound without a ferromagnetic core, the signal is very linear with the amplitude of $\dot{I}$, so the coil can be calibrated using a relatively weak current source and then used with confidence to measure very high currents. Attenuation of the signal voltage is important as the measured voltage can be very large, easily exceeding 1kV. The same effect that drives a current in B-dot probes will drive a current in a Rogowski coil wound in a single direction, so a counter-wound compensation turn is wound opposite the solenoidal direction to cancel the effect.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{rogowski.pdf}% Images in 100% size
+  \caption{Single-layer Rogowski coil with a counter-wound compensation turn. The arrows indicate the direction of winding. Taken from \citep{492777}.}
+\label{fig:rogowski}
+\end{figure}
+
+\section{Electrostatic Field Diagnostics}
+
+\subsection{Langmuir Probes}
+
+{\Large TODO \par}
+
+\subsection{Gridded Energy Analyzers}
+
+{\Large TODO \par}
+
+\section{Self-emission from Bound Electrons}
+
+
+\subsection{Charge Exchange Recombination Spectroscopy (CHERS)}
+
+Line radiation from partially-ionized low-Z impurity atoms in the plasma can be an effective method of determining the ion temperature. In large, very hot, dense plasmas, low-Z impurities in the plasma are completely ionized and do not emit line radiation. The presence of heavy high-Z ions for the purpose of photon measurements can have undesirable effects on the total heating requirements and radiation loss of the plasma. These limitations can be resolved by introducing a source of fast neutral atoms and measuring the line profiles of transitions excited by charge-exchange recombination reactions \citep{doi:10.1063/1.93893}, a diagnostic now known as CHarge Exchange Recombination Spectroscopy (CHERS). Many large-scale plasma experiments already feature a neutral beam injector for heating, doping, or diagnostic purposes which is suitable for CHERS measurements.
+
+When collisions occur between fully-ionized light impurities in the plasma and a fast neutral beam of hydrogen atoms, a charge transfer can occur with a large cross-section:
+\begin{equation*}
+H^0 + A^{+Z} \rightarrow H^+ + A^{+Z - 1}
+\end{equation*}
+
+producing an excited hydrogen-like atom which quickly decays, emitting line radiation which can be analyzed for Doppler broadening and shifts. The radiating transition must cascade downwards in a series of angular momentum conserving transitions, with the result that the observed radiation will have a long wavelength. In high-energy experiments in which injection of impurities may be undesirable, injecting a neutral beam of the same species as the plasma ion species prevents contamination. The heavy ion loses very little momentum through the collision, such that the broadening of the resulting line radiation is representative of the temperature and velocity of the CHERS-ing ions.
+
+The spectral information obtained via CHERS is inherently chord-integrated. Aligning the observation line of sight orthogonal to the beam path localizes the measurement, but there are several major sources of radiation that can coincide with the charge recombination line radiation. Bremsstrahlung broadband radiation, possible coincident lines with unrelated radiative transitions very close to the CHERS transition of interest, and the low-temperature tail of ions that have not been fully stripped will all contribute to the chord-integrated measurement. Modulation of the neutral beam can aid in distinguishing signal from background and reducing these errors.
+
+
+\subsection{Laser-Induced Fluorescence (LIF) and Two-photon Absorption LIF (TALIF)}
+
+\citep{MageeRM2012Atpa}
+
+Spectroscopy of radiative plasma self-emission is a
+
+\subsection{Zeeman Spectroscopy}
+
+{\Large TODO \par}
+
+Zeeman spectroscopy is a passive magnetic field diagnostic based on the splitting of emission or absorption lines due to the Zeeman effect. Using this method it is possible to obtain locally resolved magnetic field measurements within high energy plasmas where material probes are not an option. In high energy density plasmas, the local magnetic field strength is a very important diagnostic. The field strength is tied to the current density distribution, and determines resistivity, plasma dynamics, and energy balance. As the diagnostic method of focus in this summary, we will go into significantly more detail on the method and its applications.
+
+\subsubsection{Zeeman Splitting}
+
+The Zeeman effect is the splitting of the energy states of bound electrons in the presence of an externally applied magnetic field. 
+
+\section{VISAR}
+{\Large TODO \par}
+\citep{doi:10.1063/1.1660986}
+
+\section{Pulsed Polarimetry}
+
+A promising new magnetic field diagnostic is a LiDAR-like method known as fast-pulsed polarimetry. This method has the potential to resolve some of the most severe limitations of Faraday rotation measurements, providing spatially resolved measurements without the need for inversion of chord-integrated data. The technique combines standard Faraday rotation polarimetry \citep{Pisarczyk1990} and  with a pulsed ranging detection scheme in order to 
+
+LiDAR (Light Detection and Ranging) has long been used to generate spatial profiles of distant objects by recording reflections from a pulsed laser source. Devices capable of high power chirped pulse amplification \citep{STRICKLAND1985219} are now available, opening the door to apply pulsed ranging schemes to dense energetic plasmas with millimeter spatial resolution.
+
+{\Large TODO \par}
+
+\section{Neutron Diagnostics}
+
+In fusion research experiments, nuclear fusion reaction rates are of primary interest, both as a measure of the successful production of energy and as a diagnostic for the ions in the plasma. Nuclear reactions in deuterium and deuterium-tritium plasmas produce high-energy neutrons which, being uncharged, can escape the plasma to be registered by a diagnostic system. The intensity and spectra of these daughter neutrons contain valuable plasma diagnostic information. As the cross-section for the neutron-producing reactions are well known and strong functions of ion temperature, the daughter neutron flux can be used to estimate the temperature in a way that is insensitive to errors in the ion density \citep[p. 371]{Hutchinson_2002}. With measurements of spatial emission profiles, neutron emission can be used to measure the plasma shape and position \citep{Bielecki2019}. And ultimately, neutron production is a direct measure of progress towards the generation of power through controlled fusion. Plasma diagnosticians make use of a variety of neutron diagnostics to achieve these measurements.
+
+In general, a neutron detection system registers the products of collisions between the neutron and a target nucleus which produce charged particles and/or electromagnetic radiation that can be detected. The type of detection system is determined by the energy range of neutrons being detected, the rate of neutron emission, and restrictions from the experimental setup. The response time of different scintillating materials can range from a few nanoseconds to a few microseconds, limiting the temporal resolution. The extremely high temperature and large radiation flux in fusion confinement devices can degrade detectors and cause significant thermal and mechanical stress.
+
+Three of the most common types of scintillating materials used for fast neutron spectroscopy are plastic scintillators, 3He gas detectors, and liquid organic scintillators. Plastic scintillators are composed of a scintillating fluor, such as 6Li, suspended in a solid plastic base. They hold their shape, easing the process of fabrication and installation. They can feature fast response times of several nanoseconds, and the light output from plastic scintillators is high due to the large collision cross section of fast neutrons with hydrogen. Most plastic scintillators are not capable of neutron/gamma pulse shape discrimination, placing a higher importance on effective shielding of background radiation. 3He gas detectors use high-pressure 3He at liquid nitrogen temperature as the scintillating material. They also have fast decay times of a few nanoseconds. Unlike solid plastic scintillators, they are robust to radiation and do not decompose over time. At high neutron energies, the collision cross section for 3He becomes small resulting in a lower signal to noise ratio. Liquid organic scintillators use a liquid organic solvent as a base. They have slower response times of hundreds of nanoseconds, limiting their application to lower counting rates. Pulse shape can be used in liquid scintillators to distinguish neutrons from other radiation sources, decreasing the background noise. Dissolved oxygen both reduces light output and interferes with pulse shape discrimination properties, so liquid scintillators must be thoroughly deoxygenated before use by bubbling nitrogen or an inert gas such as argon through.
+
+A high gain photodetector must be paired with the scintillator to convert detection events into a measurable voltage pulse. The detection peak of the photomultiplier should match the emission peak of the scintillator. Scintillation detectors will commonly use photomultiplier tubes (PMT) or silicon photomultipliers (SiPM). Photomultiplier tubes are typically less expensive than SiPMs, less sensitive to temperature, and feature higher gain, but are more fragile, require constant high voltage supply, are more sensitive to magnetic fields, and have a higher active area per dead time.
+
+\section{Ex Situ Diagnostics}
+
+{\Large TODO \par}
+
+\section{Coded Aperture Imaging}
+
+{\Large TODO \par}
+
+\section{Infrared Imaging}
+
+{\Large TODO \par}
+
+\section{Thomson Scattering}
+
+\subsection{Coherent Thomson Scattering}
+
+{\Large TODO \par}
+
+\subsection{Incoherent LIDAR Thomson Scattering}
+
+{\Large TODO \par}
+
+% \section{BOILERPLATE DOWN HERE}
+
+% \section{How to submit to the \textbf{\textit{Journal of Plasma Physics}}}
+% Authors must submit using the online submission and peer review system, ScholarOne Manuscripts (formerly Manuscript Central) at http://mc.manuscriptcentral.com/pla. If visiting the site for the first time, users must create a new account by clicking on `register here'. Once logged in, authors should click on the `Corresponding Author Centre', from which point a new manuscript can be submitted, with step-by-step instructions provided. Authors must at this stage specify the type of paper submitted: `original article' or `review' (see \S\ref{sec:filetypes} for more details). Once your submission is completed you will receive an email confirmation.
+ 
+% \section{Rules of submission}\label{sec:rules_submission}
+% Submission of a paper implies a declaration by the author that the work has not previously been published, that it is not being considered for publication elsewhere and that it has not already been considered by a different editor of the Journal.
+
+% \section{Types of paper}\label{sec:types_paper}
+% \subsection{Research article}
+% Regular submissions to JPP are termed `research articles' and must contain original research. Papers should be written in a concise manner; though JPP has no page limit, each paper will be judged on its own merits, and those deemed excessive in length will be rejected or will require significant revision.
+
+% \subsection{Review}
+% Articles reviewing the developments and achievements within areas of interest to the plasma physics community are welcomed as `reviews'. Reviews must be fully referenced and authors should take care to avoid excessive length.
+
+% \subsection{Special issue papers}
+% On occasion JPP publishes a collection of articles dedicated to a particular theme. In such cases papers are usually commissioned, and an additional paper type is temporarily made available. This paper type should be selected only for those papers being considered for the issue in question. 
+
+% \section{File types}\label{sec:filetypes}
+% Authors are strongly encouraged to compose their papers in {\LaTeX}, using the jpp.cls style file and supporting files provided in the Instructions for Contributors section of the JPP website, with the jpp-instructions.tex file serving as a template. A PDF of the {\LaTeX} file should then be generated and submitted via the submission site. The {\LaTeX} source file should not initially be submitted alongside the PDF, but upon provisional acceptance of the paper, the {\LaTeX} source file, along with individual figure files and a PDF of the final version, will need to be submitted for typesetting purposes. 
+% %If you require guidance on how to prepare a file in \LaTeX, please refer to the document jpp2egui.tex, which is found in the zip archive at http://journals.cambridge.org/\linebreak[3]data/\linebreak[3]relatedlink/\linebreak[3]jpp-ifc.zip. 
+% Authors may also compose their papers in Word, though this will lead to the paper spending a longer period in production. If using Word, please note that equations must NOT be converted to picture format and the file must be saved with the option `make equation editable'. 
+
+% \section{Preparing your manuscript}
+% Authors should write their papers clearly and concisely in English, adhering to JPP's established style for notation, as provided in \S\ref{notstyle}. We encourage the submission of online supplementary material alongside the manuscript where appropriate (see section \ref{online}). Metric units should be used throughout and all abbreviations must be defined at first use, even those deemed to be well known to the readership. British spelling must be used, and should follow the \textit{Shorter Oxford English Dictionary}.
+
+% \subsection{Embedded movies}
+% \textbf{\textit{From 2016 JPP will be publishing papers that contain multimedia content.}} 
+
+% Authors who have multimedia content that they wish to include as part of their paper should include this within the body of the article. Authors should also include the individual multimedia files as part of their original submission with the file designation ‘movie’. The multimedia files should appear in the order in which they are first mentioned in the text and the multimedia files should be named accordingly.
+
+% Authors should also provide a relevant frame still from the video clip that they feel is representative of the content of the multimedia file. This will be used as an image that users can click on to start playback of the multimedia content
+
+
+% \subsection{Figures}
+% Figures should be as small as possible while displaying clearly all the information required, and with all lettering readable. Every effort should be taken to avoid figures that run over more than one page. There is no charge for colour figures. For review purposes figures should be embedded within the manuscript. Upon final acceptance, however, individual figure files will be required for production. These should be submitted in EPS or high-resolution TIFF format (1200 dpi for lines, 300 dpi for halftone, and 600 dpi for a mixture of lines and halftone). The minimum acceptable width of any line is 0.5pt. Each figure should be accompanied by a single caption, to appear beneath, and must be cited in the text. Figures should appear in the order in which they are first mentioned in the text and figure files must be named accordingly to assist the production process (and numbering of figures should continue through any appendices). For example see figures \ref{fig:ka} and \ref{fig:kd}. Failure to follow figure guidelines may result in a request for resupply and a subsequent delay in the production process.
+
+% \begin{figure}
+%   \centering
+%   \includegraphics{trapped.eps}% Images in 100% size
+%   \caption{Trapped-mode wavenumbers, $kd$, plotted against $a/d$ for
+%     three ellipses:\protect\\%
+%     ---$\!$---,
+%     $b/a=1$; $\cdots$\,$\cdots$, $b/a=1.5$.}
+% \label{fig:ka}
+% \end{figure}
+
+% \begin{figure}
+%   \centering
+%   \includegraphics{modes}
+%   \caption{The features of the four possible modes corresponding to
+%   (\textit{a}) periodic\protect\\ and (\textit{b}) half-periodic solutions.}
+% \label{fig:kd}
+% \end{figure}
+
+% \subsection{Tables}
+% Tables, however small, must be numbered sequentially in the order in which they are mentioned in the text. The word \textit {table} is only capitalized at the start of a sentence. See table \ref{tab:kd} for an example.
+
+% \begin{table}
+%   \begin{center}
+% \def~{\hphantom{0}}
+%   \begin{tabular}{lccc}
+%       $a/d$  & $M=4$   &   $M=8$ & Callan \etal \\[3pt]
+%       0.1   & 1.56905 & ~~1.56~ & 1.56904\\
+%       0.3   & 1.50484 & ~~1.504 & 1.50484\\
+%       0.55  & 1.39128 & ~~1.391 & 1.39131\\
+%       0.7   & 1.32281 & ~10.322 & 1.32288\\
+%       0.913 & 1.34479 & 100.351 & 1.35185\\
+%   \end{tabular}
+%   \caption{Values of $kd$ at which trapped modes occur when $\rho(\theta)=a$}
+%   \label{tab:kd}
+%   \end{center}
+% \end{table}
+
+
+% \subsection{Datasets}
+% JPP encourages authors to make available the underlying dataset of their article. JPP has partnered with Zenodo to provide authors with the tools to do this. Zenodo is a free service that gives authors the ability to deposit and provide access to the data objects or datasets that underlie the figures and tables in their published research. Zenodo assigns all publically available uploads a DOI so that the datasets can be easily referenced. For further information and guidelines on how to deposit a dataset in Zenodo, please read the separate document JPP-Zenodo guide for authors.
+
+% \subsection{Online supplementary material}\label{online}
+% Relevant material which is not suitable for inclusion in the main article body, such as movies or numerical simulations/animations, can be uploaded as part of the initial submission. Each individual file must be accompanied by a separate caption and a suitable title (which can be provided in a Word file), such as `Movie 1', and large files should be archived as a .zip or .tar file before uploading. Each individual supplementary file should be no more than 10MB. Upon publication these materials will then be hosted online alongside the final published article. Likewise, should there be detailed mathematical relations, tables or figures which are likely to be useful only to a few specialists, these can also be published online as supplementary material. Note that supplementary material is published `as is', with no further production performed.
+
+% \section{Editorial decisions}
+
+% \subsection{Revision}
+% If a revision is requested, you should upload revised files following the same procedure as for submitting a new paper. You begin by clicking on `Manuscripts with decision' in your Corresponding Author Center, and then on `Create a revision'. (Note that if you abandon the process before completing the submission, to continue the submission, you must click on `Revised manuscripts in draft'.) There is a new first page showing the decision letter and a space for your reply to the referee's/editor's comments. You also have the opportunity at this stage to upload your reply to the comments as a separate file. All the values filled in on original submission are displayed again. The ID number of the paper will be appended `.R1'.
+
+% \subsection{Provisional acceptance}
+% If the paper is accepted as suitable for publication you will be sent a provisional acceptance decision. This enables you to upload the final files required for production:
+% \begin{enumerate}
+% \item the final PDF or Word version of the paper, designated as a `main document';
+% \item any source files (see section \ref{sec:filetypes}) which must be designated as `production (not for review)' and uploaded as a single .zip or .tar file.
+% \end{enumerate}
+
+% In the decision email a link to the transfer of copyright form will also be sent, and this form can either be uploaded with the files mentioned above, or can be sent separately. No paper can be published without a completed transfer of copyright form.
+
+% Please note JPP standard procedure is for authors to assign copyright to Cambridge University Press. For research funded by bodies which insist on retention of copyright (for example EURATOM), we can provide an alternative grant of licence form. 
+
+% \subsection{Acceptance}
+% On receipt of the production files you will be sent an email indicating completion of the acceptance process.
+
+% \section{Publication process}
+% Once a paper has been accepted for publication and the source files have been uploaded, the manuscript will be sent to Cambridge University Press for copyediting and typesetting, and will be assigned a digital object identifier (doi). When the proof is ready, authors will receive an email alert containing a link to the PDF of the proof, and instructions for its correction and return. It is imperative that authors check their proofs closely, particularly the equations and figures, which should be checked against the accepted file, as the production schedule does not allow for corrections at a later stage. Your JPP article will be published straight into an issue online as soon as it is ready. The PDF published online is the Version of Record and no further alterations/corrections to this document will be allowed.
+
+% \section{Obtaining help}
+% Technical support for the online submission system is available by clicking on the `Get Help Now' link at the top-right corner of each page of the submission site. Any other questions relating to the submission or publication process should be directed to the JPP Editorial Assistant, Mrs Amanda Johns, at plaeditorial@cambridge.org.
+
+% \section{Notation and style}\label{notstyle}
+% Generally any queries concerning notation and journal style can be answered by viewing recent pages in the Journal. However, the following guide provides the key points to note. It is expected that Journal style will be followed, and authors should take care to define all variables or entities upon first use. Also note that footnotes are not normally accepted.
+
+% \subsection{Mathematical notation}
+% \subsubsection{Setting variables, functions, vectors, matrices etc}
+
+% \textbf{Italic font} should be used for denoting variables, with multiple-letter symbols avoided except in the case of dimensionless numbers.
+
+% \textbf{Upright Roman font} (or upright Greek where appropriate) should be used for:
+% \begin{itemize}
+% \item Operators: sin, log, d, $\Delta$, e etc.
+% \item Constants: i ($\sqrt{-1}$), $\upi$ (defined as \verb}\upi}), etc.
+% \item Functions: $\Ai$, $\Bi$ (Airy functions, defined as \verb|\Ai| and \verb|\Bi|), $\Real$ (real part, defined as \verb|\Real|), $\Imag$ (imaginary part, defined as \verb|\Imag|), etc.
+% \item Physical units: cm, s, etc
+% \item Abbreviations: c.c. (complex conjugate), h.o.t. (higher-order terms), DNS, etc.
+% \end{itemize}
+
+% \textbf{Bold italic font} (or bold sloping Greek) should be used for:
+
+% \begin{itemize}
+% \item  Vectors (with the centred dot for a scalar product also in bold): $\boldsymbol{i \cdot j}$
+% \end{itemize}
+
+% \textbf{Bold sloping sans serif font}, defined by the \verb|\mathsfbi| macro, should be used for:
+% \begin{itemize}
+% \item Tensors and matrices: $\mathsfbi{D}$
+% \end{itemize}
+
+% \textbf{Script font} (for example $\mathcal{G}$, $\mathcal{R}$) can be used as an alternative to italic when the same letter denotes a different quantity (use \verb|mathcal| in \LaTeX).
+
+% The product symbol ($\times$) should only be used to denote multiplication where an equation is broken over more than one line, to denote a cross product, or between numbers (the $\cdot$ symbol should not be used, except to denote a scalar product specifically).
+
+
+% \subsubsection{Other symbols}
+% A centred point should be used only for the scalar product of vectors.
+% Large numbers that are not scientific powers should not include commas, but have the
+% form 1600 or 16~000 or 160~000.
+% Use \textit{O} to denote `of the order of', not the \LaTeX\ $\mathcal{O}$.
+
+% \section{Citations and references}
+% All papers included in the References section must be cited in the article, and vice versa. Citations should be included as, for example ``It has been shown \citep{PhysRevA.39.5856} that...'' (using the \verb#\citep# command, part of the natbib package) ``recent work by \citet{https://doi.org/10.1029/1999RG900011}...'' (using \verb#\citet#).
+% The natbib package can be used to generate citation variations, as shown below.
+% \begin{itemize}
+% \item \verb#\citet[pp. 2-4]{doi:10.1063/1.872637}#:
+% \citet[pp. 479-480]{doi:10.1063/1.872637} 
+% \item \verb#\citep[p. 6]{doi:10.1063/1.872637}#:
+% \citep[p. 6]{doi:10.1063/1.872637}
+% \item \verb#\citep[see][]{Fantz_2006}#:
+% \citep[see][]{Fantz_2006}
+% \item \verb#\citep[see][p. 18]{Fantz_2006}#:
+% \citep[see][p. 18]{Fantz_2006}
+% \item \verb#\citep{Fantz_2006}#:
+% \citep{Fantz_2006}
+% \end{itemize}
+
+% The References section can either be built from individual \verb#\bibitem# commands, or can be built using BibTex. The BibTex files used to generate the references in this document can be found in the zip file in the Instructions for Contributors section of the JPP website.
+
+% Where there are up to ten authors, all authors' names should be given in the reference list. Where there are more than ten authors, only the first name should appear, followed by et al.
+
+% Acknowledgements should be included at the end of the paper, before the References section or any appendicies, and should be a separate paragraph without a heading. Several anonymous individuals are thanked for contributions to these instructions.
+
+% \appendix
+
+% \section{}\label{appA}
+% This appendix contains sample equations in the JPP style. Please refer to the {\LaTeX} source file for examples of how to display such equations in your manuscript.
+
+% \begin{equation}
+%   (\nabla^2+k^2)G_s=(\nabla^2+k^2)G_a=0
+%   \label{Helm}
+% \end{equation}
+
+% \begin{equation}
+%   \bnabla\bcdot\boldsymbol{v} = 0,\quad \nabla^{2}P=
+%     \bnabla\bcdot(\boldsymbol{v}\times \boldsymbol{w}).
+% \end{equation}
+
+% \begin{equation}
+%   G_s,G_a\sim 1 / (2\upi)\ln r
+%   \quad \mbox{as\ }\quad r\equiv|P-Q|\rightarrow 0,
+%   \label{singular}
+% \end{equation}
+
+% \begin{equation}
+% \left. \begin{array}{ll}  
+% \displaystyle\frac{\p G_s}{\p y}=0
+%   \quad \mbox{on\ }\quad y=0,\\[8pt]
+% \displaystyle  G_a=0
+%   \quad \mbox{on\ }\quad y=0,
+%  \end{array}\right\}
+%   \label{symbc}
+% \end{equation}
+
+
+% \begin{equation}
+%   -\frac{1}{2\upi} \int_0^{\infty} \gamma^{-1}[\mathrm exp(-k\gamma|y-\eta|)
+%   + \mathrm exp(-k\gamma(2d-y-\eta))] \cos k(x-\xi)t\:\mathrm{d} t,
+%   \qquad 0<y,\quad \eta<d,
+% \end{equation}
+
+% \begin{equation}
+%   \gamma(t) = \left\{
+%     \begin{array}{ll}
+%       -\mathrm{i}(1-t^2)^{1/2}, & t\le 1 \\[2pt]
+%       (t^2-1)^{1/2},         & t>1.
+%     \end{array} \right.
+% \end{equation}
+
+% \[
+%   -\frac{1}{2\upi}
+%   \pvi B(t)\frac{\cosh k\gamma(d-y)}{\gamma\sinh k\gamma d}
+%   \cos k(x-\xi)t\:\mathrm{d} t
+% \]
+
+% \begin{equation}
+%   G = -\frac{1}{4}\mathrm{i} (H_0(kr)+H_0(kr_1))
+%     - \frac{1}{\upi} \pvi\frac{\mathrm{e}^{-\kgd}}%
+%     {\gamma\sinh\kgd} \cosh k\gamma(d-y) \cosh k\gamma(d-\eta)
+% \end{equation}
+
+% Note that when equations are included in definitions, it may be suitable to render them in line, rather than in the equation environment: $\boldsymbol{n}_q=(-y^{\prime}(\theta),
+% x^{\prime}(\theta))/w(\theta)$.
+% Now $G_a=\squart Y_0(kr)+\Gat$ where
+% $r=\{[x(\theta)-x(\psi)]^2 + [y(\theta)-y(\psi)]^2\}^{1/2}$ and $\Gat$ is
+% regular as $kr\ttz$. However, any fractions displayed like this, other than $\thalf$ or $\squart$, must be written on the line, and not stacked (ie 1/3).
+ 
+% \begin{align}
+%   \ndq\left(\frac{1}{4} Y_0(kr)\right) & \sim 
+%     \frac{1}{4\upi w^3(\theta)}
+%     [x^{\prime\prime}(\theta)y^{\prime}(\theta)-
+%     y^{\prime\prime}(\theta)x^{\prime}(\theta)] \nonumber\\
+%   & =  \frac{1}{4\upi w^3(\theta)}
+%     [\rho^{\prime}(\theta)\rho^{\prime\prime}(\theta)
+%     - \rho^2(\theta)-2\rho^{\prime 2}(\theta)]
+%     \quad \mbox{as\ }\quad kr\ttz . \label{inteqpt}
+% \end{align}
+
+% \begin{equation}
+%   \frac{1}{2}\phi_i = \frac{\upi}{M} \sumjm\phi_j K_{ij}^a w_j,
+%   \qquad i=1,\,\ldots,\,M,
+% \end{equation}
+% where
+% \begin{equation}
+%   K_{ij}^a = 
+%       \begin{cases}
+%       \p G_a(\theta_i,\theta_j)/\p n_q, & i\neq j \\[2pt]
+%       \p\Gat(\theta_i,\theta_i)/\p n_q
+%       + [\rho_i^{\prime}\rho_i^{\prime\prime}-\rho_i^2-2\rho_i^{\prime 2}]
+%       / 4\upi w_i^3, & i=j.
+%       \end{cases}
+% \end{equation}
+
+
+% \refstepcounter{equation}
+% \[
+%   \rho_l = \lim_{\zeta \rightarrow Z^-_l(x)} \rho(x,\zeta), \quad
+%   \rho_{u} = \lim_{\zeta \rightarrow Z^{+}_u(x)} \rho(x,\zeta)
+%   \eqno{(\theequation{\mathit{a},\mathit{b}})}\label{eq35}
+% \]
+
+% \begin{equation}
+%   (\rho(x,\zeta),\phi_{\zeta\zeta}(x,\zeta))=(\rho_0,N_0)
+%   \quad \mbox{for}\quad Z_l(x) < \zeta < Z_u(x).
+% \end{equation}
+
+
+% \begin{subeqnarray}
+%   \tau_{ij} & = &
+%     (\overline{\overline{u}_i \overline{u}_j}
+%     - \overline{u}_i\overline{u}_j)
+%     + (\overline{\overline{u}_iu^{SGS}_j
+%     + u^{SGS}_i\overline{u}_j})
+%     + \overline{u^{SGS}_iu^{SGS}_j},\\[3pt]
+%   \tau^\theta_j & = &
+%     (\overline{\overline{u}_j\overline{\theta}}
+%     - \overline{u}_j \overline{\theta})
+%     + (\overline{\overline{u}_j\theta^{SGS}
+%     + u^{SGS}_j \overline{\theta}})
+%     + \overline{u^{SGS}_j\theta^{SGS}}.
+% \end{subeqnarray}
+
+% \begin{equation}
+% \setlength{\arraycolsep}{0pt}
+% \renewcommand{\arraystretch}{1.3}
+% \slsQ_C = \left[
+% \begin{array}{ccccc}
+%   -\omega^{-2}V'_w  &  -(\alpha^t\omega)^{-1}  &  0  &  0  &  0  \\
+%   \displaystyle
+%   \frac{\beta}{\alpha\omega^2}V'_w  &  0  &  0  &  0  &  \mathrm{i}\omega^{-1} \\
+%   \mathrm{i}\omega^{-1}  &  0  &  0  &  0  &  0  \\
+%   \displaystyle
+%   \mathrm{i} R^{-1}_{\delta}(\alpha^t+\omega^{-1}V''_w)  &  0
+%     & -(\mathrm{i}\alpha^tR_\delta)^{-1}  &  0  &  0  \\
+%   \displaystyle
+%   \frac{\mathrm{i}\beta}{\alpha\omega}R^{-1}_\delta V''_w  &  0  &  0
+%     &  0  & 0 \\
+%   (\mathrm{i}\alpha^t)^{-1}V'_w  &  (3R^{-1}_{\delta}+c^t(\mathrm{i}\alpha^t)^{-1})
+%     &  0  &  -(\alpha^t)^{-2}R^{-1}_{\delta}  &  0  \\
+% \end{array}  \right] .
+% \label{defQc}
+% \end{equation}
+
+% \begin{equation}
+% \etb^t = \skew2\hat{\etb}^t \exp [\mathrm{i} (\alpha^tx^t_1-\omega t)],
+% \end{equation}
+% where $\skew2\hat{\etb}^t=\boldsymbol{b}\exp (\mathrm{i}\gamma x^t_3)$. 
+% \begin{equation}
+% \mbox{Det}[\rho\omega^2\delta_{ps}-C^t_{pqrs}k^t_qk^t_r]=0,
+% \end{equation}
+
+% \begin{equation}
+%  \langle k^t_1,k^t_2,k^t_3\rangle = \langle
+% \alpha^t,0,\gamma\rangle  
+% \end{equation}
+
+% \begin{equation}
+% \boldsymbol{f}(\theta,\psi) = (g(\psi)\cos \theta,g(\psi) \sin \theta,f(\psi)).
+% \label{eq41}
+% \end{equation}
+
+% \begin{eqnarray}
+% f(\psi_1) = \frac{3b}{\upi[2(a+b \cos \psi_1)]^{{3}/{2}}}
+%   \int^{2\upi}_0 \frac{(\sin \psi_1 - \sin \psi)(a+b \cos \psi)^{1/2}}%
+%   {[1 - \cos (\psi_1 - \psi)](2+\alpha)^{1/2}}\mathrm{d}x,
+% \label{eq42}
+% \end{eqnarray}
+% \begin{eqnarray}
+% g(\psi_1) & = & \frac{3}{\upi[2(a+b \cos \psi_1)]^{{3}/{2}}}
+%   \int^{2\upi}_0 \left(\frac{a+b \cos \psi}{2+\alpha}\right)^{1/2}
+%   \left\{ \astrut f(\psi)[(\cos \psi_1 - b \beta_1)S + \beta_1P]
+%   \right. \nonumber\\
+% && \mbox{}\times \frac{\sin \psi_1 - \sin \psi}{1-\cos(\psi_1 - \psi)}
+%   + g(\psi) \left[\left(2+\alpha - \frac{(\sin \psi_1 - \sin \psi)^2}
+%   {1- \cos (\psi - \psi_1)} - b^2 \gamma \right) S \right.\nonumber\\
+% && \left.\left.\mbox{} + \left( b^2 \cos \psi_1\gamma -
+%   \frac{a}{b}\alpha \right) F(\frac{1}{2}\upi, \delta) - (2+\alpha)
+%   \cos\psi_1 E(\frac{1}{2}\upi, \delta)\right] \astrut\right\} \mathrm{d} \psi,
+% \label{eq43}
+% \end{eqnarray}
+% \begin{equation}
+% \alpha = \alpha(\psi,\psi_1) = \frac{b^2[1-\cos(\psi-\psi_1)]}%
+%   {(a+b\cos\psi) (a+b\cos\psi_1)},
+%   \quad
+%   \beta - \beta(\psi,\psi_1) = \frac{1-\cos(\psi-\psi_1)}{a+b\cos\psi}.
+% \end{equation}
+
+
+% \begin{equation}
+% \left. \begin{array}{l}
+% \displaystyle
+% H(0) = \frac{\epsilon \overline{C}_v}{\tilde{v}^{{1}/{2}}_T
+% (1- \beta)},\quad H'(0) = -1+\epsilon^{{2}/{3}} \overline{C}_u
+% + \epsilon \skew5\hat{C}_u'; \\[16pt]
+% \displaystyle
+% H''(0) = \frac{\epsilon u^2_{\ast}}{\tilde{v}^{{1}/{2}}
+% _T u^2_P},\quad H' (\infty) = 0.
+% \end{array} \right\}
+% \end{equation}
+
+\bibliographystyle{jpp}
+% Note the spaces between the initials
+
+
+
+\bibliography{paper}
+
+\end{document}
