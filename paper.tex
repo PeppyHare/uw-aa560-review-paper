@@ -8,6 +8,60 @@
 %   (based on JFMsampl.tex v1.3 for LaTeX2.09)
 % Copyright (C) 1996, 1997, 2014, 2017 Cambridge University Press
 
+% Outline and section completion
+% - Magnetic probes
+%   - [x] Magnetic field probes
+%   - [x] Rogowski coils
+% - Electric probes
+%   - [x] Langmuir Probes
+%   - [ ] Gridded energy analyzers
+% - Line radiation spectroscopy
+%   - [x] CHERS
+%   - [x] LIF/TALIF
+%   - [ ] [ ] [ ] Zeeman spectroscopy
+% - Scattering of EM radiation
+%   - [ ] Coherent Thomson scattering
+%   - [x] Incoherent Thomson scattering
+% - Imaging
+%   - [x] Coded aperture imaging
+%   - [x] IR imaging / two-color pyrometry
+% - Polarimetry
+%   - [ ] Pulsed Polarimetry
+%   - [ ] VISAR
+% - Fusion products
+%   - [x] Neutron Diagnostics
+% - Ex Situ Diagnostics
+%   - [x] XPS
+%   - [ ] Profilometry?
+%   - [ ] Raman microscopy
+
+% Done: 9/17
+% Fri
+%  - [x] magnetic field probes
+%  - [x] rogowski coils
+% Sat
+%  - [x] neutron diagnostics
+%  - [x] cHERS
+% Sun
+%  - [x] lif/talif
+%  - [X] XPS
+% Mon
+%  - [x] IR/two-color pyrometry
+%  - [x] coded aperture imaging
+% Tue
+%  - [x] incoherent thomson
+%  - [x] langmuir probes
+% Wed
+%  - [ ] Zeeman spectroscopy (THE BIG ONE)
+% Thu
+%  - [ ] coherent thomson
+%  - [ ] visar
+% Fri
+%  - [ ] gridded energy analyzer
+%  - [ ] pulsed polarimetry
+%  - [ ] review
+
+
 \documentclass{jpp}
 \usepackage{graphicx}
 % \usepackage{epstopdf, epsfig}
@@ -45,11 +99,9 @@ An abstract could go here? Eventually? I sure hope so.
 \subsection{B-dot Field Probes}
 
 The simplest magnetic field measurement is obtained by straightforward application of Faraday's law to a loop of conducting wire. Assuming an open circuit, a changing magnetic field will induce a voltage $V_{emf}$ :
-
 \begin{equation*}
 \int_{area} \pdv{\vec B}{t} \cdot \dd \vec S = - \oint _{loop} \vec E \cdot \dd \vec l = - V_{emf}
 \end{equation*}
-
 For a rigid loop, the voltage across the ends of the coil gives the component of $\dot{\vec B}$ normal to the loop area, averaged over the area of the loop. The absolute field strength can be recovered by integrating the signal in time if the initial field strength is known. There is an inherent trade-off between spatial resolution and signal strength; $\dot{\vec B}$ is spatially averaged over the coil area, and the signal intensity is proportional to the coil area. B-dot coils are typically small ($r \sim 1-100 mm$) for spatial resolution, and feature many coil windings to increase signal intensity.
 
 A B-dot coil diagnostic circuit must be calibrated using a known time-varying magnetic field source, typically a current-carrying wire. While one may compute the inductive response of the coil directly from its geometry, coils are often wound by hand with a potentially non-uniform cross-sectional area and calibration gives a much more accurate estimation of the magnetic field. The calibration provides the constant of proportionality between $\dot {\vec B}_{avg}$ and the measured voltage, and more importantly takes into account the finite impedances of the coil, transmission circuit, integrator, and meter \citep{doi:10.1063/1.3246785}. A non-idealized measurement circuit requires a nonzero current in order to integrate and/or digitize the signal. Standard s-domain analysis using Laplace transforms is an effective method for determining the frequency response of the diagnostic circuit for a given form of $\dot{\vec B}(t)$, such as a triangle wave impulse. Once an expression for the response of the diagnostic circuit is obtained in the s-domain, the resistance and capacitance of the meter and integrator can be tuned to minimize oscillations on the timescale of interest while maintaining an acceptable rise time for fast input signals.
@@ -57,25 +109,39 @@ A B-dot coil diagnostic circuit must be calibrated using a known time-varying ma
 \subsection{Rogowski Coils}
 
 A Rogowski coil is a solenoidal coil used to directly measure alternating and transient currents flowing through its center, as shown in figure \ref{fig:rogowski}. Instead of measuring the local magnetic field, the Rogowski coil acts as a specially constructed mutual inductor with any current flowing through the loop area, according to Ampere's law. If the coil is tightly wound ($r_c \gg (b - a)$, as shown in figure \ref{fig:rogowski}) and the spacing between turns is small compared to the magnetic field gradient, then the voltage out of the Rogowski coil $V_c$ is related to the current enclosed by:
-
 \begin{equation*}
 V_c = N A \mu \dot I
 \end{equation*}
-
 where $N$ is the number of turns per unit length, $A$ is the area enclosed by the coil, $\mu$ is the permeability of the medium in the solenoid. As with B-dot probes the voltage measured across the coil gives the time derivative of the quantity of interest, and must be integrated by means of an electronic integrator or numerical integration after digitization. Unlike B-dot probes, the signal is insensitive to the exact shape of the coil as long as the coil forms a complete loop, simplifying both installation and calibration. Because the coil is wound without a ferromagnetic core, the signal is very linear with the amplitude of $\dot{I}$, so the coil can be calibrated using a relatively weak current source and then used with confidence to measure very high currents. Attenuation of the signal voltage is important as the measured voltage can be very large, easily exceeding 1kV. The same effect that drives a current in B-dot probes will drive a current in a Rogowski coil wound in a single direction, so a counter-wound compensation turn is wound opposite the solenoidal direction to cancel the effect.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.5\textwidth]{rogowski.pdf}% Images in 100% size
-  \caption{Single-layer Rogowski coil with a counter-wound compensation turn. The arrows indicate the direction of winding. Taken from \citep{492777}.}
+  \caption{Single-layer Rogowski coil with a counter-wound compensation turn. The arrows indicate the direction of winding. \citep{492777}}
 \label{fig:rogowski}
 \end{figure}
 
-\section{Electrostatic Field Diagnostics}
+\section{Electrostatic Diagnostics}
 
 \subsection{Langmuir Probes}
 
-{\Large TODO \par}
+An electrically biased conducting probe inserted into a steady-state plasma is known as a Langmuir probe, and is a surprisingly useful diagnostic tool particularly in low temperature plasmas. A probe larger than the Debye length is inherently perturbative and will draw current from the plasma. It is the perturbative nature of the probe which allows its use as a diagnostic tool, while simultaneously involving intricate interactions which require careful treatment in order to extract accurate the plasma density, electron temperature, and plasma potential. In this summary we will limit ourselves to the most straightforward case, that of a quasi-static, thermal, unmagnetized, relatively cold plasma.
+
+Consider a probe which is biased at $V_p$ (with respect to the walls of the walls of the plasma chamber) is swept over a wide range, we measure the current flowing through the probe and obtain an I-V characteristic similar to that shown in figure \ref{fig:langmuir}. At point B when the probe is at the floating potential $V_f$, the total current flowing out of the probe is zero. As the potential is decreased, eventually all of the electrons are repelled (point A) and the current approaches the ion saturation current $I_{is}$. Increasing the voltage from $V_f$, there is a distinct ``knee'' in the I-V characteristic at point C. This is the plasma potential (or space potential) $V_{sp}$ which is greater than $V_f$ due to the perturbative effect of the probe. The current at point C is the electron saturation current $I_{es}$. In the absence of collisions and sheath effects, the current would not increase for $V_p > V_{sp}$ since all electrons reaching the probe are collected and all ions are repelled.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{langmuir-iv-curve.pdf}
+  \caption{An idealized IV curve obtained with a collecting Langmuir probe in a cold plasma. \citep{Conde2011AnIT}.}
+\label{fig:langmuir}
+\end{figure}
+The region between points B and C is called the transition region and is the region of interest in determining plasma properties. In the transition region, the electron current varies exponentially as $I_e = I_{es} \exp [(V_p - V_{sp})/ k T_e]$. Plotting $\ln(I)$ vs $V_p$, the slope of the transition region gives the inverse of the electron temperature $T_e$. With the temperature in hand, the plasma density can be determined from either the ion or electron saturation current:
+\begin{equation*}
+n_e = \frac{I_{is}}{e A} \left( \frac{m_i}{m_e} \right)^{1/2} \left( \frac{k T_e}{2 \pi m_e} \right) ^{1/2}
+\end{equation*}
+where $A$ is the probe area, $m_i$ is the ion mass, $m_e$ is the electron mass. Because the electron saturation current can be exceedingly large, the ion saturation current is much easier to determine. The presence of non-thermal energetic populations will create additional inflection points in the I-V characteristic.
+
+Fluctuations in the plasma potential can push a single Langmuir probe into the electron saturation region, damaging or destroying the probe. A double Langmuir solves this problem by replacing the probe ground with a second floating probe of the same geometry and collection area, so that the probe current is based on the bias potential instead of the plasma potential with respect to the chamber wall. If the plasma parameters vary rapidly, the quasi-static assumption limits the time resolution of the measurement. Adding a third probe allows simultaneous measurement of multiple points along the I-V characteristic \citep{doi:10.1063/1.1714492}. To achieve simultaneous measurement of $T_e$ and $n_e$, we apply a large bias voltage between the first two probes to measure the ion saturation current as we would for a double probe. If set the voltage between probes 2 and 3 $V_{2,3}$ less than the difference between the floating potential and the plasma potential, the third probe operates in the transition region where $I_e = I_{es} \exp [(V_p - V_{sp})/ k T_e]$. The current through the double probe, the bias voltage, and $V_{2, 3}$ are then sufficient to simultaneously solve the current through each probe and recover an instantaneous measurement of $T_e$ and $n_i$.
+
 
 \subsection{Gridded Energy Analyzers}
 
@@ -92,7 +158,6 @@ When collisions occur between fully-ionized light impurities in the plasma and a
 \begin{equation*}
 H^0 + A^{+Z} \rightarrow H^+ + A^{+Z - 1}
 \end{equation*}
-
 producing an excited hydrogen-like atom which quickly decays, emitting line radiation which can be analyzed for Doppler broadening and shifts. The radiating transition must cascade downwards in a series of angular momentum conserving transitions, with the result that the observed radiation will have a long wavelength. In high-energy experiments in which injection of impurities may be undesirable, injecting a neutral beam of the same species as the plasma ion species prevents contamination. The heavy ion loses very little momentum through the collision, such that the broadening of the resulting line radiation is representative of the temperature and velocity of the CHERS-ing ions.
 
 The spectral information obtained via CHERS is inherently chord-integrated. Aligning the observation line of sight orthogonal to the beam path localizes the measurement, but there are several major sources of radiation that can coincide with the charge recombination line radiation. Bremsstrahlung broadband radiation, possible coincident lines with unrelated radiative transitions very close to the CHERS transition of interest, and the low-temperature tail of ions that have not been fully stripped will all contribute to the chord-integrated measurement. Modulation of the neutral beam can aid in distinguishing signal from background and reducing these errors.
@@ -100,17 +165,16 @@ The spectral information obtained via CHERS is inherently chord-integrated. Alig
 
 \subsection{Laser-Induced Fluorescence (LIF) and Two-photon Absorption LIF (TALIF)}
 
-Self-emission of bound electrons can be actively stimulated by inducing excitations with electromagnetic radiation at a resonant frequency, generally using a laser. Resonant fluorescence has several advantages over passive spectroscopy. The intensity of line radiation for a particular transition can be increased substantially by tuning the laser frequency, and crossing the viewing and exciting beams can offer a very localized measurement as shown in figure \ref{fig:lif}. 
-
+Self-emission of bound electrons can be actively stimulated by inducing excitations with electromagnetic radiation at a resonant frequency, generally using a laser. Analysis of the resulting laser-induced fluorescence (LIF) has several advantages over passive spectroscopy. The intensity of line radiation for a particular transition can be increased substantially by tuning the laser frequency to the resonant frequency of the transition, and crossing the viewing and exciting beams can spatially localize what would otherwise be a chord-integrated measurement as shown in figure \ref{fig:lif}. The effect of laser-induced excitations on the plasma properties is minimized by using a low-intensity beam or by pulsing the laser quickly to ensure that the target species only remains in an excited state for a very short amount of time (typically $\sim 10ns$). LIF is widely used in many fields outside of fusion plasma diagnostics. Within the scope of fusion plasmas, the spectra of the resulting radiation can provide information about ion temperature, density, and bulk velocity, and isotopic distribution.
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{lif-localized-region.pdf}% Images in 100% size
+  \includegraphics[width=0.5\textwidth]{lif-localized-region.pdf}
   \caption{Resonant fluorescence of atomic transitions with orthogonal viewing direction allows a very localized detection region. \citep{Hutchinson_2002}.}
 \label{fig:lif}
 \end{figure}
+In fusion plasma experiments using hydrogen isotopes, it is desirable to measure the properties of hydrogen neutrals near the plasma edge. The wavelengths of interest (i.e. hydrogen $L_\beta$ transitions) are in the ultraviolet range and are not easily transmitted through viewing port windows, making direct spectroscopic measurements of transitions to the ground state difficult. The recent commercial availability of reliable high-energy, high-intensity, narrow linewidth lasers allows for excitation via a two-photon absorption process known as TALIF \citep{MageeRM2012Atpa}. As each photon only needs to provide half of the transition energy, lasers of longer wavelengths can be used which are much easier to produce and transmit. While the single-photon absorption rate is proportional to the laser intensity, the two-photon absorption rate is proportional to the square of the intensity, so measurements can be spatially localized without the need for a perpendicular viewing chord by focusing the beam at the position of interest with a lens.
 
-
-\citep{MageeRM2012Atpa}
+The absorbed photons can come from a single beam, or from multiple coincident beams. Counter-propagating beams can be used to obtain ``Doppler-free'' measurements. By tuning the energy of each beam such that they sum to the transition energy, the Doppler shifts of the absorbed photons are equal and opposite and cancel. Such a counter-propagating setup effectively probes the entire Doppler-broadened line without the need to scan the laser frequency. Doppler-free measurements remove the temperature broadening from the absorption spectra, allowing for the observation of weaker broadening and wavelength shift effects such as Zeeman and Stark broadening.
 
 \subsection{Zeeman Spectroscopy}
 
@@ -122,7 +186,26 @@ Zeeman spectroscopy is a passive magnetic field diagnostic based on the splittin
 
 The Zeeman effect is the splitting of the energy states of bound electrons in the presence of an externally applied magnetic field. 
 
+\section{Thomson Scattering}
+
+Thomson scattering is the elastic scattering of electromagnetic radiation from free charged particles, both electrons and ions. 
+
+\subsection{Coherent Thomson Scattering}
+
+{\Large TODO \par}
+
+\subsection{Incoherent Thomson Scattering}
+
+Thomson scattering from electrons is ``incoherent'' when the Debye length is much greater than the wavelength of the scattering laser such that the collective plasma effects can be neglected in the scattering interaction. The spectrum and intensity of the scattered light can be used to determine the density and temperature of electrons. This has major advantages over other methods of electron temperature measurement. Langmuir probes perturb the plasma and are limited to the plasma edge. Interferometry gives chord-integrated measurements which must be inverted to spatially resolve. In contrast, coherent Thomson scattering is a direct, localized, weakly-perturbing diagnostic.
+
+An incoherent Thomson scattering setup involves a pulsed laser source, an optical collection system with an observation line intersecting the laser path, and a spectrometer capable of resolving narrow wavelength separations. The wavelength of scattered radiation will be Doppler shifted by the thermal motion of the scattering electron, and the intensity of the scattered radiation is proportional to the number of scattering electrons in the scattering volume. Assuming a Maxwellian thermal distribution of electrons, fitting a Gaussian to the scattered radiation spectrum gives the electron temperature. If the spectrometer is capable of sufficiently detailed resolution in frequency space, the spectrum can also be analyzed for non-Maxwellian populations. Recovering the electron density from the scattered intensity reqires an absolute calibration of the diagnostic using a neutral gas.
+
+The scattering interaction cross-section for electrons is very small, determined by the total Thomson cross section $\sigma_t = 8 \pi r_e ^2 / 3 \approx 6.65\cdot 10^{-29} m^2$. Very high intensity laser sources are required to achieve acceptable signal-to-noise ratios. Laser sources in use are typically in the optical range, commonly ruby or frequency-doubled Nd:YAG lasers. The most prominent sources of noise are external sources, stray laser radiation, stray line radiation, and bremsstrahlung. During Thomson scattering measurements, noise from external sources is reduced by blocking sight-lines, covering windows, and using a viewing dump for the observational line. Stray laser radiation can be removed by blocking light within the laser bandwidth at the spectrometer. Coincident line radiation can be avoided by adjusting the laser frequency if using a dye laser or other tunable laser source. Bremsstrahlung is broad-band radiation which can not be spectrally filtered. Noise from bremsstrahlung can be reduced by shuttering the detector very quickly in tandem with the laser pulse. Polarized laser sources can also be used to further increase the signal-to-noise ratio.
+
+The spectral and spatial resolution of Thomson scattering can be improved with more complicated configurations. In TV Thomson scattering, scattered radiation is collected using a group of lenses focused at multiple locations along the laser beam and imaged by position onto the detector slit. Light from the detector slit is then dispersed to form a 2D spectrogram along a spatial dimension. The optical configuration for such a detector can be very complicated, but the increased resolution can be worth the trouble. Incoherent Thomson scattering can also be performed using a single port by measuring backscattered radiation in a LIDAR configuration. Measurements are spatially resolved by the time of flight; backscattered radiation from points further from the detector will arrive later. The spatial resolution in LIDAR systems is largely determined by the laser pulse duration, and sub-nanosecond pulse durations are not uncommon. The maximum achievable pulse intensity and small Thomson scattering cross-section limit the achievable spatial resolution. As with pulsed polarimetry diagnostics, the commercial availability of high-intensity chirped pulse amplification sources has dramatically improved the spatial resolution that can be achieved.
+
 \section{VISAR}
+
 {\Large TODO \par}
 \citep{doi:10.1063/1.1660986}
 
@@ -146,27 +229,49 @@ A high gain photodetector must be paired with the scintillator to convert detect
 
 \section{Ex Situ Diagnostics}
 
+\subsection{X-ray Photoelectron Spectroscopy (XPS)}
+
+X-ray photoelectron spectroscopy (XPS), also known as electron spectroscopy for chemical analysis (ESCA), is a commonly-used technique for determining elemental composition and electronic state of the surface of a material sample. The sample is placed in vacuum and irradiated by monoenergetic x-rays, which transfer their energy to and liberate bound electrons via the photoelectric effect. For incident x-rays with energy $h \nu$, the kinetic energy of the liberated photoelectron is given by:
+
+\begin{equation*}
+KE = h \nu - E_{binding} - \phi
+\end{equation*}
+
+where $E_{binding}$ is the binding energy of the previously bound electron, and $\phi$ is the work function from surface to spectrometer. An electron collection lens feeds into an electron energy analyzer, most commonly a hemispherical electron energy analyzer composed of two concentric hemispherical electrodes maintained at a voltage difference. As electrons traverse the analyzer, they are radially separated by their energy until they pass through a collection slit for detection and digitization. For conducting samples, the detector and sample must be grounded together to account for space charge effects and obtain an absolute energy calibration. For insulating sample materials, low-energy flooding electrons must be added to the environment to replace the photoelectrons. In this case, the energy of the flooding electrons must be added to the work function.
+
+The binding energies of each atomic species at the surface of the the sample will produce identifiable peaks in the photoelectron energy spectrum. The cross-section for the photoelectric interaction is nearly constant across low-Z atomic species, so the relative intensity of the peaks in the energy spectrum is identical to the relative population of each species in the sample. Only the outermost surface of the sample will contribute to the photoelectron spectrum. For a photoelectron to be detected, the x-ray must penetrate into the sample, and the electron must escape the sample. This sampling depth is very shallow, in the range of $1-10nm$ for most materials and x-ray sources.
+
+\subsection{Profilometry}
+
+
 {\Large TODO \par}
+
+\subsection{Raman Microscopy}
+
+
+{\Large TODO \par}
+
 
 \section{Coded Aperture Imaging}
 
-{\Large TODO \par}
+In inertial confinement fusion research, imaging x-rays and high energy particles is critical for solving the implosion dynamics \citep{Niki1983}. X-rays are difficult to refract, transmit and focus, making the use of conventional optics difficult. Neutron imaging is also of interest, especially in the decommissioning of radioactive waste products. The simplest scheme for collimating radiation which cannot be focused with using a lens is the pinhole camera. Pinhole cameras have an intrinsic trade-off between resolution and signal-to-noise ratio (SNR); a smaller aperture produces a higher resolution image, but a larger diameter pinhole produces a higher intensity image. The SNR limitations of pinhole cameras for x-ray astronomy led to the design of pinhole cameras with many randomly-distributed apertures called scatter-hole apertures. Fourier analysis can be used to recover the image from a scatter-hole aperture, but leads to the amplification of small noise terms.
+
+Coded aperture imaging improves on the limitations of pinhole and scatter-hole cameras by constructing a ``coded'' distribution of pinholes with advantageous properties for reconstruction. If we consider the distribution of transparent and opaque elements of the aperture as a binary encoding matrix $A$, then we would like to be able to determine a decoding matrix $G$ with the property that the correlation is nearly a delta function: $A \cdot G \approx \delta$ \citep{CIESLAK201659}. There are several types of such encoding schemes that have been used to construct coded apertures. Uniformly redundant arrays (URAs) are based on a class of arrays known as pseudonoise arrays, in which the number of times that a particular separation between a pair of holes in the aperture occurs is constant regardless of the separation distance. URAs have a significantly improved signal-to-noise ratio, but are restricted to rectangular array dimensions. A more versatile encoding algorithm is used to generate modified uniformly redundant arrays (MURAs) using quadratic residues given a chosen prime number. The ability to create square aperture MURAs strikes a good balance of lower design complexity and high image resolution. Coded aperture imaging is now a dominant imaging technique in large scale x-ray imaging and in gamma and neutron imaging where high resolution and sensitivity are required.
 
 \section{Infrared Imaging}
 
-{\Large TODO \par}
+Plasma-facing components must endure extreme thermal and material stresses during operation. Spatially-resolved temperature measurements can be used to predict failure modes, detect anomalous regions, and diagnose failures in fluid systems. Direct temperature measurements using physical sensors are often difficult or impossible due to the extreme operating temperatures and electronically noisy environment. Instead, infrared imaging of blackbody radiation (pyrometry) is used to remotely determine the temperature profile of plasma-facing surfaces. A small wavelength range in the infrared is imaged using an infrared camera. The surface temperature $T$ is then calculated from the total expected blackbody radiation $M_{bb}$ in the target wavelength range, the emissivity $\epsilon(T)$ of the material, and the Stefan-Boltzmann constant $\sigma$ per the Stefan-Boltzmann law:
+\begin{equation*}
+M_{bb} = \epsilon(T) \sigma T^4
+\end{equation*}
+The properties of imaging cameras are determined by the type of detector used to convert focused infrared radiation into electric signal. An important detector property is the target operational wavelength range. Common detectors used in order of increasing wavelength are InGaAs detectors, indium antimonide detectors, strained layer superlattice (SLS) detectors, mercury cadmium telluride detectors, and microbolometers. Longer wavelength regimes are preferable in the study of plasma-facing devices in order to reduce interference from the plasma itself.
 
-\section{Thomson Scattering}
+Typical room-temperature detectors are able to resolve temperature differences of 30-200mK. Cooled detectors operating on the photoelectric effect can be used to increase temperature resolution to the 10mK range. Because of the increased sensitivity to single photons, liquid nitrogen temperatures must be maintained or self-irradiance can blind the detector. Detectors operating at longer wavelengths often require active cooling, which shorter-wavelength detectors are able to operate at higher temperatures. Cooled infrared detectors are very costly to operate and maintain, and are only used when high temperature resolution or long detector wavelength is crucial.
 
-\subsection{Coherent Thomson Scattering}
+Imaging in a single infrared wavelength window requires detailed knowledge of the material emissivity. Emissivity is a function of both temperature and angle of observation relative to normal, and the errors in determining the emissivity of all imaged components can be large. For this reason, infrared imaging should be performed normal to the target surface. The errors due to emissivity variation can be greatly reduced by measuring emissions at two or more narrow wavelength ranges and computing their ratio, a technique known as two-color pyrometry. The temperature can then be calculated from the ratio using Planck's law assuming gray body emission, with a resulting error that is dependent on the separation between the target frequencies windows and ratio of emissivity at each of the target frequencies. The ratio temperature is no longer sensitive to the emissivity dependence on temperature and angle of incidence, making two-color pyrometry suitable for multi-purpose imaging in situations where the emissivity of the surface is not known or the angle of observation is varied \citep{MullerB2001Doaf}.
 
-{\Large TODO \par}
 
-\subsection{Incoherent LIDAR Thomson Scattering}
-
-{\Large TODO \par}
-
-% \section{BOILERPLATE DOWN HERE}
+% BOILERPLATE TEMPLATE BELOW HERE
 
 % \section{How to submit to the \textbf{\textit{Journal of Plasma Physics}}}
 % Authors must submit using the online submission and peer review system, ScholarOne Manuscripts (formerly Manuscript Central) at http://mc.manuscriptcentral.com/pla. If visiting the site for the first time, users must create a new account by clicking on `register here'. Once logged in, authors should click on the `Corresponding Author Centre', from which point a new manuscript can be submitted, with step-by-step instructions provided. Authors must at this stage specify the type of paper submitted: `original article' or `review' (see \S\ref{sec:filetypes} for more details). Once your submission is completed you will receive an email confirmation.
