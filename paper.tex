@@ -16,7 +16,7 @@
 %   - [x] Langmuir Probes
 %   - [ ] Gridded energy analyzers
 % - Line radiation spectroscopy
-%   - [x] CHERS
+%   - [x] ChERS
 %   - [x] LIF/TALIF
 %   - [ ] [ ] [ ] Zeeman spectroscopy
 % - Scattering of EM radiation
@@ -32,16 +32,14 @@
 %   - [x] Neutron Diagnostics
 % - Ex Situ Diagnostics
 %   - [x] XPS
-%   - [ ] Profilometry?
-%   - [ ] Raman microscopy
 
-% Done: 9/17
+% Done: 10/17
 % Fri
 %  - [x] magnetic field probes
 %  - [x] rogowski coils
 % Sat
 %  - [x] neutron diagnostics
-%  - [x] cHERS
+%  - [x] ChERS
 % Sun
 %  - [x] lif/talif
 %  - [X] XPS
@@ -70,6 +68,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{physics}
+\newcommand{\angstrom}{\text{\normalfont\AA}}
 
 \shorttitle{Summary of Plasma Diagnostic Methods}
 \shortauthor{Summary of Plasma Diagnostic Methods}
@@ -108,7 +107,7 @@ A B-dot coil diagnostic circuit must be calibrated using a known time-varying ma
 
 \subsection{Rogowski Coils}
 
-A Rogowski coil is a solenoidal coil used to directly measure alternating and transient currents flowing through its center, as shown in figure \ref{fig:rogowski}. Instead of measuring the local magnetic field, the Rogowski coil acts as a specially constructed mutual inductor with any current flowing through the loop area, according to Ampere's law. If the coil is tightly wound ($r_c \gg (b - a)$, as shown in figure \ref{fig:rogowski}) and the spacing between turns is small compared to the magnetic field gradient, then the voltage out of the Rogowski coil $V_c$ is related to the current enclosed by:
+A Rogowski coil is a solenoidal coil used to directly measure alternating and transient currents flowing through its center, as shown in Figure \ref{fig:rogowski}. Instead of measuring the local magnetic field, the Rogowski coil acts as a specially constructed mutual inductor with any current flowing through the loop area, according to Ampère's law. If the coil is tightly wound ($r_c \gg (b - a)$, as shown in Figure \ref{fig:rogowski}) and the spacing between turns is small compared to the magnetic field gradient, then the voltage out of the Rogowski coil $V_c$ is related to the current enclosed by:
 \begin{equation*}
 V_c = N A \mu \dot I
 \end{equation*}
@@ -127,7 +126,7 @@ where $N$ is the number of turns per unit length, $A$ is the area enclosed by th
 
 An electrically biased conducting probe inserted into a steady-state plasma is known as a Langmuir probe, and is a surprisingly useful diagnostic tool particularly in low temperature plasmas. A probe larger than the Debye length is inherently perturbative and will draw current from the plasma. It is the perturbative nature of the probe which allows its use as a diagnostic tool, while simultaneously involving intricate interactions which require careful treatment in order to extract accurate the plasma density, electron temperature, and plasma potential. In this summary we will limit ourselves to the most straightforward case, that of a quasi-static, thermal, unmagnetized, relatively cold plasma.
 
-Consider a probe which is biased at $V_p$ (with respect to the walls of the walls of the plasma chamber) is swept over a wide range, we measure the current flowing through the probe and obtain an I-V characteristic similar to that shown in figure \ref{fig:langmuir}. At point B when the probe is at the floating potential $V_f$, the total current flowing out of the probe is zero. As the potential is decreased, eventually all of the electrons are repelled (point A) and the current approaches the ion saturation current $I_{is}$. Increasing the voltage from $V_f$, there is a distinct ``knee'' in the I-V characteristic at point C. This is the plasma potential (or space potential) $V_{sp}$ which is greater than $V_f$ due to the perturbative effect of the probe. The current at point C is the electron saturation current $I_{es}$. In the absence of collisions and sheath effects, the current would not increase for $V_p > V_{sp}$ since all electrons reaching the probe are collected and all ions are repelled.
+Consider a probe which is biased at $V_p$ (with respect to the walls of the walls of the plasma chamber) is swept over a wide range, we measure the current flowing through the probe and obtain an I-V characteristic similar to that shown in Figure \ref{fig:langmuir}. At point B when the probe is at the floating potential $V_f$, the total current flowing out of the probe is zero. As the potential is decreased, eventually all of the electrons are repelled (point A) and the current approaches the ion saturation current $I_{is}$. Increasing the voltage from $V_f$, there is a distinct ``knee'' in the I-V characteristic at point C. This is the plasma potential (or space potential) $V_{sp}$ which is greater than $V_f$ due to the perturbative effect of the probe. The current at point C is the electron saturation current $I_{es}$. In the absence of collisions and sheath effects, the current would not increase for $V_p > V_{sp}$ since all electrons reaching the probe are collected and all ions are repelled.
 \begin{figure}
   \centering
   \includegraphics[width=0.5\textwidth]{langmuir-iv-curve.pdf}
@@ -165,7 +164,7 @@ The spectral information obtained via CHERS is inherently chord-integrated. Alig
 
 \subsection{Laser-Induced Fluorescence (LIF) and Two-photon Absorption LIF (TALIF)}
 
-Self-emission of bound electrons can be actively stimulated by inducing excitations with electromagnetic radiation at a resonant frequency, generally using a laser. Analysis of the resulting laser-induced fluorescence (LIF) has several advantages over passive spectroscopy. The intensity of line radiation for a particular transition can be increased substantially by tuning the laser frequency to the resonant frequency of the transition, and crossing the viewing and exciting beams can spatially localize what would otherwise be a chord-integrated measurement as shown in figure \ref{fig:lif}. The effect of laser-induced excitations on the plasma properties is minimized by using a low-intensity beam or by pulsing the laser quickly to ensure that the target species only remains in an excited state for a very short amount of time (typically $\sim 10ns$). LIF is widely used in many fields outside of fusion plasma diagnostics. Within the scope of fusion plasmas, the spectra of the resulting radiation can provide information about ion temperature, density, and bulk velocity, and isotopic distribution.
+Self-emission of bound electrons can be actively stimulated by inducing excitations with electromagnetic radiation at a resonant frequency, generally using a laser. Analysis of the resulting laser-induced fluorescence (LIF) has several advantages over passive spectroscopy. The intensity of line radiation for a particular transition can be increased substantially by tuning the laser frequency to the resonant frequency of the transition, and crossing the viewing and exciting beams can spatially localize what would otherwise be a chord-integrated measurement as shown in Figure \ref{fig:lif}. The effect of laser-induced excitations on the plasma properties is minimized by using a low-intensity beam or by pulsing the laser quickly to ensure that the target species only remains in an excited state for a very short amount of time (typically $\sim 10ns$). LIF is widely used in many fields outside of fusion plasma diagnostics. Within the scope of fusion plasmas, the spectra of the resulting radiation can provide information about ion temperature, density, and bulk velocity, and isotopic distribution.
 \begin{figure}
   \centering
   \includegraphics[width=0.5\textwidth]{lif-localized-region.pdf}
@@ -180,11 +179,76 @@ The absorbed photons can come from a single beam, or from multiple coincident be
 
 {\Large TODO \par}
 
-Zeeman spectroscopy is a passive magnetic field diagnostic based on the splitting of emission or absorption lines due to the Zeeman effect. Using this method it is possible to obtain locally resolved magnetic field measurements within high energy plasmas where material probes are not an option. In high energy density plasmas, the local magnetic field strength is a very important diagnostic. The field strength is tied to the current density distribution, and determines resistivity, plasma dynamics, and energy balance. As the diagnostic method of focus in this summary, we will go into significantly more detail on the method and its applications.
+Zeeman spectroscopy is a non-perturbative magnetic field diagnostic based on the splitting of emission or absorption lines due to the Zeeman effect. Using this method it is possible to obtain locally resolved magnetic field measurements within the plasma volume where material probes are not an option. Since magnetic field strength is tied to the current density distribution and determines resistivity, plasma dynamics, and energy balance, spatially resolved magnetic field diagnostics are of particular importance in the realm of fusion confinement. As the diagnostic method of focus in this summary, we will go into significantly more detail on the method and its applications.
 
-\subsubsection{Zeeman Splitting}
+\subsubsection{The Zeeman Effect}
 
-The Zeeman effect is the splitting of the energy states of bound electrons in the presence of an externally applied magnetic field. 
+The Zeeman effect is the splitting of the energy states of bound electrons in the presence of an externally applied magnetic field. It is a result of the magnetic dipole interaction between the external field and the electron's spin $\vec S$ and orbital angular momentum $L$:
+\begin{equation*}
+H_{Zeeman} = \frac{e}{2 m_e c} (\vec L + 2 \vec S) \cdot \vec B
+\end{equation*}
+Perturbation theory is required to determine the new energy states of the electron. If the strength of the external magnetic field is small compared to the spin-orbit coupling fine-structure term ($B < 10 T$ for laboratory plasmas of small atomic number), then we can simply compute the expectation values of $H_{Zeeman}$ and add them to the energy states of the electron in the absence of the field. This is the ``weak'' Zeeman effect; for very strong magnetic fields the spin-orbit coupling is broken and the effect is known as the Paschen-Back effect. For a weak magnetic field, we assume without loss of generality that the magnetic field points in the z-direction and compute the energy splitting $E_{Zeeman}$ as
+\begin{equation*}
+E_{Zeeman} = g_J \mu_B m_j B
+\end{equation*}
+where $g_J$ is the Landé g-factor (which depends on the quantum numbers $j$, $l$, and $s$), $m_j$ is the z-component of the total angular momentum, and $\mu_B$ is the Bohr magneton. In an absorption/emission spectrum, this translates to a wavelength shift $\Delta \lambda$ given by:
+\begin{equation*}
+\Delta \lambda = \frac{\mu_B}{h c} \Delta (m_j g_J) B \lambda_0 ^2
+\end{equation*}
+An external magnetic field thus broadens a spectral line $\lambda _0$ by an amount proportional to the field strength, the wavelength of the line, and the difference $\Delta (m_j g_J)$ between the transition states.
+
+\subsubsection{Broadening Effects}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{pres7.pdf}
+  \caption{Shown in red is Zeeman effect of the Al III 4s-4p doublet, calculated for a magnetic field of 4T and convolved with Voight profile due to a $0.2\angstrom$ FWHM Doppler-Gaussian ($T_i= 5 eV$) and a $3\angstrom$ Lorentzian ($n_e = 5 \cdot 10^{17} cm^{-3}$). Also shown in black is the Zeeman pattern without the Lorentzian broadening. From \citep{doi:10.1063/5.0009432}.}
+\label{fig:broadening}
+\end{figure}
+
+The line splitting due to the Zeeman effect can be very small when compared with other sources of line broadening present in high energy density plasmas. In a high density $n_e = 10^{17} cm^{-3}$ plasma, the width of the Lorentzian pressure broadening can be an order of magnitude greater than the Zeeman splitting, as shown in Figure \ref{fig:broadening}. Likewise, the Gaussian temperature broadening in a fairly low-temperature plasma $T = 5 eV$ will be as large as the Zeeman splitting. Instrument broadening will contribute an additional broadening term. While the Zeeman splitting may be measured directly in relatively cool, thin plasmas, it can be very difficult to extend Zeeman splitting diagnostics to high energy density plasmas. Fortunately, it is possible to use polarization discrimination to discern the separate Zeeman split components even in the presence of substantial broadening.
+
+\subsubsection{Polarization Effects}
+
+Selection rules governing electric dipole transitions mandate that for a given transition $\Delta m_j = 0$ or $\Delta m_j = \pm 1$. Transitions for which $\Delta m = 0$ are called the $\pi$ components. The $\Delta m = \pm 1$ components are $\sigma^+$ and $\sigma _-$, respectively. The $\sigma$ components are split further from the original line since $\Delta (m_j g_J)$ is greater for $\Delta m = \pm 1$. Because the emitted/absorbed photon has unitary spin, conservation of angular momentum uniquely determines the polarization of each component, as shown in Figure \ref{fig:zeeman-polarization}. The $\pi$ component is linearly polarized parallel to the magnetic field. The $\sigma$ components are circularly polarized in the plane perpendicular to the magnetic field. This leads to two possible orthogonal viewing situations. When viewed along a line of sight parallel to the magnetic field, the un-shifted $\pi$ component is not observed and the $\sigma$ components are observed with opposite circular polarization. When viewed along a line of sight perpendicular to the magnetic field, the $\pi$ component is observed linearly polarized parallel to the magnetic field, and the $\sigma$ components are observed linearly polarized perpendicular to $\vec B$. Because the thermal and pressure broadening effects are polarization independent, polarization discrimination can be used to recover the otherwise obscured Zeeman broadening at high temperatures and pressures.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{pres4cropped.png}
+  \caption{Depiction of the $\sigma$ and $\pi$ components of the Zeeman split transition when viewed longitudinally or transverse to the direction of the magnetic field. In the transverse view, the $\pi$ and $\sigma$ components are both visible and are linearly polarized orthogonal to each other. In the longitudinal view, the $\sigma$ components are right- and left-circular polarized and the $\pi$ component is no longer visible. \citep{https://doi.org/10.1029/1999RG900011}.}
+\label{fig:zeeman-polarization}
+\end{figure}
+
+\subsubsection{Transverse Zeeman Diagnostic}
+
+In a Z-pinch configuration, the magnetic field is completely azimuthal at all locations and the observational line of sight may be oriented parallel the z-axis so that it is perpendicular to the direction of the magnetic field. In this transverse view, both $\pi$ and $\sigma$ components will be visible with linear polarization as shown in Figure \ref{fig:zeeman-polarization}. Under the assumption that the plasma parameters are constant along the z-axis, this produces a measurement which is radially resolved. The $\pi$ and $\sigma$ components can be separated by their orthogonal linear polarization, but remain convolved with the other sources of broadening.
+
+The Zeeman splitting is determined by calculating a fit of the broadened spectral line for each of the $\pi$ and $\sigma$ components using the full expression for the convolved Zeeman splitting and sources of broadening. The difference in FWHM between the components gives the Zeeman splitting, which in turn gives the magnetic field strength. Computing the field in this manner requires a very high signal-to-noise ratio, and is typically not possible to achieve in a single shot. The method is not appropriate for a configuration with low shot-to-shot reproducibility, but has the benefit of obtaining radially-resolved magnetic field measurements without the need for inversion.
+
+\subsubsection{Longitudinal Zeeman Diagnostic (Two-Polarizations Method)}
+
+In contrast, if the observational line of sight can be aligned parallel to the magnetic field, then the $\sigma^+$ and $\sigma ^-$ components can be separately identified by polarization. This gives the most sensitive possible measurement of the Zeeman splitting by suppressing the un-shifted $\pi$ components. However, in a Z-pinch configuration, the only observation chord which is strictly parallel to the magnetic field is a line tangent to the outermost radius of the plasma extent which only provides the magnitude of the field at a single radius. The ``two-polarizations method'' resolves this restriction by making use of the significant temperature gradient present in a Z-pinch, as shown in Figure \ref{fig:impurity-shells} using the example of oxygen impurities. At the cooler larger radii, the plasma is only hot enough to doubly ionize oxygen, so the oxygen population at that radius will be predominantly O-III. As the temperature increases towards the center of the pinch, the charge state of oxygen will continue to increase. The charges of O-III and O-VI are sufficiently different that they reside in distinctly different radii. The unique emission lines of the different charge states can be identified and analyzed for Zeeman splitting.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{impurity-shells.pdf}
+  \caption{Schematic of measurements of the B-field radial distribution by utilizing the emission lines of different charge states that are abundant within different radii. Observing the emission from the outermost radius in which each charge-state emits provides radially resolved data without the need for Abel inversion. It also ensures viewing parallel to the magnetic field, which is crucial for polarization spectroscopy. From \citep{doi:10.1063/5.0009432}}
+\label{fig:impurity-shells}
+\end{figure}
+
+In practice, the temperature distribution and distribution of charge state populations may not be known a priori. Instead, observations are made along many chordal lines of sight to identify the maximum radius in which the various charge states reside. At this radius, the magnetic field is nearly parallel to the line of sight as shown in Figure \ref{fig:impurity-shells}, and the un-shifted $\pi$ component is completely suppressed. The $\sigma^-$ and $\sigma^+$ components can then be separated by combining a quarter-wave plate and a beam splitter. The Zeeman splitting can then be calculated from the shift in line positions between the split components. Since this method relies on the line positions rather than their shapes, this has the highest sensitivity to the magnetic field and can be performed in a single measurement. This method was used to generate a distribution of the magnetic field strength at several times during a single pulse in a Z-pinch device by \citep{Rosenzweig_2017}. An additional data point of boundary field strength can be obtained from Ampère's law using a B-dot probe outside the pinch region, assuming the total current flows within the plasma cylinder.
+
+This method can provide exceptionally detailed information about the magnetic field distribution compared to other methods without the need for Abel inversion. The predominant sources of error inherent to this method are the finite acceptance cones of the optical elements, the polarization mixing between branches in the quarter-wave plate for non-zero angles of incidence, the decrease in diattenuation of the polarizing beam splitter at angles of incidence other than $45^\circ$, and any components of the magnetic field which are not parallel to the line of sight. Each of these effects serves to decrease the observed splitting, making the derived magnetic field a lower bound for the true field. The technique is generally limited to a minimum radius from the pinch axis. Closer to the axis, the temperature is maximized (increasing Doppler broadening) and the field strength is minimized, decreasing the observed Zeeman splitting.
+
+% \subsubsection{Measurements of Magnetic Field with Arbitrary Direction}
+
+\subsubsection{Neutral Particle Injection}
+
+Line radiation spectroscopic techniques require the presence of species within the plasma volume which have not been fully ionized. In high energy tokamaks, the presence of many high-Z impurities within the bulk plasma can cause unacceptable radiation losses and power requirements. Even in experiments with substantial intrinsic impurity populations, localized injection of neutral atoms can help localize the otherwise chord-integrated measurement. Neutral species for line radiation spectroscopy are typically injected using diagnostic neutral beam injectors or pellet injection.
+
+Neutral beams are often present in large-scale fusion confinement experiments to perform a variety of diagnostics. A high-energy beam of neutral atoms is injected into the plasma where it becomes excited by collisions with the plasma and emits Zeeman-split line radiation. Lithium neutral beams have been used for Zeeman spectroscopy on the DIII-D experiment \citep{doi:10.1063/1.1526928} due to the long wavelength of the $2^2S$-$2^2P$ transition and the minimally perturbative effect. Intersecting the line of observation with the neutral beam in a small volume gives a localized measurement of the field strength. With a highly-localized measurement, the direction of an unknown magnetic field can be determined by calculation of the ratio of linear to circular polarization. For Zeeman spectroscopy of an injected neutral beam to be successful, the beam must be generated with extremely low intrinsic ion temperatures to reduce the Doppler broadening as much as possible. The beam current must strike a balance; higher beam current produces a better signal-to-noise ratio, but can push the diagnostic into a perturbative regime by injecting a large impurity population.
+
+Pellet injection is also used in high-energy experiments to introduce localized impurity species. Pellet injectors are frequently used to refuel the burning plasma or to trigger stabilizing edge localized modes \citep{BaylorL.R2015Emwp}. Small pellets are injected at high speed into the plasma where they vaporize, forming a weakly localized ablation cloud. Line radiation from the ablation cloud can then be analyzed for Zeeman splitting measurements. This technique is used in the Tokamak Fusion Test Reactor \citep{doi:10.1063/1.1141775} using lithium pellet injection to determine the magnetic field direction.
 
 \section{Thomson Scattering}
 
@@ -240,17 +304,6 @@ KE = h \nu - E_{binding} - \phi
 where $E_{binding}$ is the binding energy of the previously bound electron, and $\phi$ is the work function from surface to spectrometer. An electron collection lens feeds into an electron energy analyzer, most commonly a hemispherical electron energy analyzer composed of two concentric hemispherical electrodes maintained at a voltage difference. As electrons traverse the analyzer, they are radially separated by their energy until they pass through a collection slit for detection and digitization. For conducting samples, the detector and sample must be grounded together to account for space charge effects and obtain an absolute energy calibration. For insulating sample materials, low-energy flooding electrons must be added to the environment to replace the photoelectrons. In this case, the energy of the flooding electrons must be added to the work function.
 
 The binding energies of each atomic species at the surface of the the sample will produce identifiable peaks in the photoelectron energy spectrum. The cross-section for the photoelectric interaction is nearly constant across low-Z atomic species, so the relative intensity of the peaks in the energy spectrum is identical to the relative population of each species in the sample. Only the outermost surface of the sample will contribute to the photoelectron spectrum. For a photoelectron to be detected, the x-ray must penetrate into the sample, and the electron must escape the sample. This sampling depth is very shallow, in the range of $1-10nm$ for most materials and x-ray sources.
-
-\subsection{Profilometry}
-
-
-{\Large TODO \par}
-
-\subsection{Raman Microscopy}
-
-
-{\Large TODO \par}
-
 
 \section{Coded Aperture Imaging}
 
