@@ -14,26 +14,26 @@
 %   - [x] Rogowski coils
 % - Electric probes
 %   - [x] Langmuir Probes
-%   - [ ] Gridded energy analyzers
+%   - [x] Gridded energy analyzers
 % - Line radiation spectroscopy
 %   - [x] ChERS
 %   - [x] LIF/TALIF
 %   - [x] [x] [x] Zeeman spectroscopy
 % - Scattering of EM radiation
-%   - [ ] Coherent Thomson scattering
+%   - [x] Coherent Thomson scattering
 %   - [x] Incoherent Thomson scattering
 % - Imaging
 %   - [x] Coded aperture imaging
 %   - [x] IR imaging / two-color pyrometry
 % - Polarimetry
 %   - [ ] Pulsed Polarimetry
-%   - [ ] VISAR
+%   - [x] VISAR
 % - Fusion products
 %   - [x] Neutron Diagnostics
 % - Ex Situ Diagnostics
 %   - [x] XPS
 
-% Done: 13/18
+% Done: 16/19
 % Fri
 %  - [x] magnetic field probes
 %  - [x] rogowski coils
@@ -52,11 +52,12 @@
 % Wed
 %  - [x] Zeeman spectroscopy (THE BIG ONE)
 % Thu
-%  - [ ] coherent thomson
-%  - [ ] visar
+%  - [x] coherent thomson
+%  - [x] visar
 % Fri
-%  - [ ] gridded energy analyzer
+%  - [x] gridded energy analyzer
 %  - [ ] pulsed polarimetry
+%  - [ ] introduction
 %  - [ ] review
 
 
@@ -85,13 +86,9 @@
 
 \maketitle
 
-\begin{abstract}
-An abstract could go here? Eventually? I sure hope so.
-\end{abstract}
-
 \section{Introduction}
 
-{\Large TODO \par}
+
 
 \section{Magnetic Field Diagnostics}
 
@@ -144,10 +141,13 @@ Fluctuations in the plasma potential can push a single Langmuir probe into the e
 
 \subsection{Gridded Energy Analyzers}
 
-{\Large TODO \par}
+Langmuir probes can be used to obtain direct measurements of the electron temperature, but the electron saturation current is large enough to drown out any variations in the ion current. Instead, we can obtain a direct measurement of the ion energy distribution function by passing the ions through a system of grids at different potentials. A gridded energy analyzer is composed of a series of three wire grids maintained at various potentials and a charge collector. The first grid is held at a large negative potential to repel all incident electrons. The ions being positively charged pass directly through the first grid. A second grid is held at a positive grid potential $V_g$ and acts as a discriminator for high energy ions. Any ions with energy less than $e V_g$ are repelled, and the rest pass through to a collector plate. By varying $V_g$ and measuring the collector plate current, we obtain a cumulative distribution function for the ion energy.
+
+When high energy ions strike the collector, they have a chance to liberate electrons which can escape backwards through the ion repeller. This has the effect of artificially increasing the measured collector current, obscuring the relatively weak signal at the upper tail of the ion velocity distribution. To avoid this situation, a third grid is placed between the ion repeller and the collector and maintained at a large negative potential, preventing electron escape from the collector. This configuration has the added benefit of separating the repellers from the collector, preventing stray currents within the repeller grids from affecting the measured collector current.
+
+If the Debye length is small compared to the grid spacing, Debye shielding will reduce the effect of the grid fields. In high density plasmas where the Debye length can be a fraction of a millimeter, achieving such a close grid spacing can be unrealistic. The Debye length can be increased by placing a plasma density filter at the entrance to the gridded energy analyzer. In practice this adds uncertainty to the effective area of the collector, but does not have a significant effect on the measured energy distribution.
 
 \section{Self-emission from Bound Electrons}
-
 
 \subsection{Charge Exchange Recombination Spectroscopy (CHERS)}
 
