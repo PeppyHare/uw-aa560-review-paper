@@ -18,7 +18,7 @@
 % - Line radiation spectroscopy
 %   - [x] ChERS
 %   - [x] LIF/TALIF
-%   - [ ] [ ] [ ] Zeeman spectroscopy
+%   - [x] [x] [x] Zeeman spectroscopy
 % - Scattering of EM radiation
 %   - [ ] Coherent Thomson scattering
 %   - [x] Incoherent Thomson scattering
@@ -33,7 +33,7 @@
 % - Ex Situ Diagnostics
 %   - [x] XPS
 
-% Done: 10/17
+% Done: 13/18
 % Fri
 %  - [x] magnetic field probes
 %  - [x] rogowski coils
@@ -50,7 +50,7 @@
 %  - [x] incoherent thomson
 %  - [x] langmuir probes
 % Wed
-%  - [ ] Zeeman spectroscopy (THE BIG ONE)
+%  - [x] Zeeman spectroscopy (THE BIG ONE)
 % Thu
 %  - [ ] coherent thomson
 %  - [ ] visar
@@ -177,8 +177,6 @@ The absorbed photons can come from a single beam, or from multiple coincident be
 
 \subsection{Zeeman Spectroscopy}
 
-{\Large TODO \par}
-
 Zeeman spectroscopy is a non-perturbative magnetic field diagnostic based on the splitting of emission or absorption lines due to the Zeeman effect. Using this method it is possible to obtain locally resolved magnetic field measurements within the plasma volume where material probes are not an option. Since magnetic field strength is tied to the current density distribution and determines resistivity, plasma dynamics, and energy balance, spatially resolved magnetic field diagnostics are of particular importance in the realm of fusion confinement. As the diagnostic method of focus in this summary, we will go into significantly more detail on the method and its applications.
 
 \subsubsection{The Zeeman Effect}
@@ -248,36 +246,54 @@ Line radiation spectroscopic techniques require the presence of species within t
 
 Neutral beams are often present in large-scale fusion confinement experiments to perform a variety of diagnostics. A high-energy beam of neutral atoms is injected into the plasma where it becomes excited by collisions with the plasma and emits Zeeman-split line radiation. Lithium neutral beams have been used for Zeeman spectroscopy on the DIII-D experiment \citep{doi:10.1063/1.1526928} due to the long wavelength of the $2^2S$-$2^2P$ transition and the minimally perturbative effect. Intersecting the line of observation with the neutral beam in a small volume gives a localized measurement of the field strength. With a highly-localized measurement, the direction of an unknown magnetic field can be determined by calculation of the ratio of linear to circular polarization. For Zeeman spectroscopy of an injected neutral beam to be successful, the beam must be generated with extremely low intrinsic ion temperatures to reduce the Doppler broadening as much as possible. The beam current must strike a balance; higher beam current produces a better signal-to-noise ratio, but can push the diagnostic into a perturbative regime by injecting a large impurity population.
 
-Pellet injection is also used in high-energy experiments to introduce localized impurity species. Pellet injectors are frequently used to refuel the burning plasma or to trigger stabilizing edge localized modes \citep{BaylorL.R2015Emwp}. Small pellets are injected at high speed into the plasma where they vaporize, forming a weakly localized ablation cloud. Line radiation from the ablation cloud can then be analyzed for Zeeman splitting measurements. This technique is used in the Tokamak Fusion Test Reactor \citep{doi:10.1063/1.1141775} using lithium pellet injection to determine the magnetic field direction.
+Pellet injection is also used in high-energy experiments to introduce localized impurity species. Pellet injectors are frequently used to refuel the burning plasma or to trigger stabilizing edge localized modes \citep{BaylorL.R2015Emwp}. Small pellets are injected at high speed into the plasma where they vaporize, forming a roughly localized ablation cloud. Line radiation from the ablation cloud can then be analyzed for Zeeman splitting measurements. This technique is used in the Tokamak Fusion Test Reactor \citep{doi:10.1063/1.1141775} using lithium pellet injection to determine the magnetic field direction.
 
 \section{Thomson Scattering}
 
-Thomson scattering is the elastic scattering of electromagnetic radiation from free charged particles, both electrons and ions. 
-
-\subsection{Coherent Thomson Scattering}
-
-{\Large TODO \par}
+Thomson scattering is the elastic scattering of electromagnetic radiation from free charged particles in the classical limit. Although the Thomson scattering cross section is extremely small, laser sources of sufficient power ($>100 MW$) to observe Thomson scattering above the background radiation have become commercially available and Thomson scattering measurements have become commonplace in both magnetic fusion and inertial confinement fusion research \citep{doi:10.1063/1.2336451}. Two distinct categories of Thomson scattering measurements can be identified by the product of the wavevector of the scattered radiation and the Debye wavelength. For $k \lambda_{De} \gg 1$, the electrons scatter independently and the scattering is incoherent. When the wavelength is larger than the Debye length, resonant plasma fluctuations form collective effects and the scattering is coherent.
 
 \subsection{Incoherent Thomson Scattering}
 
 Thomson scattering from electrons is ``incoherent'' when the Debye length is much greater than the wavelength of the scattering laser such that the collective plasma effects can be neglected in the scattering interaction. The spectrum and intensity of the scattered light can be used to determine the density and temperature of electrons. This has major advantages over other methods of electron temperature measurement. Langmuir probes perturb the plasma and are limited to the plasma edge. Interferometry gives chord-integrated measurements which must be inverted to spatially resolve. In contrast, coherent Thomson scattering is a direct, localized, weakly-perturbing diagnostic.
 
-An incoherent Thomson scattering setup involves a pulsed laser source, an optical collection system with an observation line intersecting the laser path, and a spectrometer capable of resolving narrow wavelength separations. The wavelength of scattered radiation will be Doppler shifted by the thermal motion of the scattering electron, and the intensity of the scattered radiation is proportional to the number of scattering electrons in the scattering volume. Assuming a Maxwellian thermal distribution of electrons, fitting a Gaussian to the scattered radiation spectrum gives the electron temperature. If the spectrometer is capable of sufficiently detailed resolution in frequency space, the spectrum can also be analyzed for non-Maxwellian populations. Recovering the electron density from the scattered intensity reqires an absolute calibration of the diagnostic using a neutral gas.
+An incoherent Thomson scattering setup involves a pulsed laser source, an optical collection system with an observation line intersecting the laser path, and a spectrometer capable of resolving narrow wavelength separations. The wavelength of scattered radiation will be Doppler shifted by the thermal motion of the scattering electron, and the intensity of the scattered radiation is proportional to the number of scattering electrons in the scattering volume. Assuming a Maxwellian thermal distribution of electrons, fitting a Gaussian to the scattered radiation spectrum gives the electron temperature. If the spectrometer is capable of sufficiently detailed resolution in frequency space, the spectrum can also be analyzed for non-Maxwellian populations. Recovering the electron density from the scattered intensity requires an absolute calibration of the diagnostic using a neutral gas.
 
 The scattering interaction cross-section for electrons is very small, determined by the total Thomson cross section $\sigma_t = 8 \pi r_e ^2 / 3 \approx 6.65\cdot 10^{-29} m^2$. Very high intensity laser sources are required to achieve acceptable signal-to-noise ratios. Laser sources in use are typically in the optical range, commonly ruby or frequency-doubled Nd:YAG lasers. The most prominent sources of noise are external sources, stray laser radiation, stray line radiation, and bremsstrahlung. During Thomson scattering measurements, noise from external sources is reduced by blocking sight-lines, covering windows, and using a viewing dump for the observational line. Stray laser radiation can be removed by blocking light within the laser bandwidth at the spectrometer. Coincident line radiation can be avoided by adjusting the laser frequency if using a dye laser or other tunable laser source. Bremsstrahlung is broad-band radiation which can not be spectrally filtered. Noise from bremsstrahlung can be reduced by shuttering the detector very quickly in tandem with the laser pulse. Polarized laser sources can also be used to further increase the signal-to-noise ratio.
 
 The spectral and spatial resolution of Thomson scattering can be improved with more complicated configurations. In TV Thomson scattering, scattered radiation is collected using a group of lenses focused at multiple locations along the laser beam and imaged by position onto the detector slit. Light from the detector slit is then dispersed to form a 2D spectrogram along a spatial dimension. The optical configuration for such a detector can be very complicated, but the increased resolution can be worth the trouble. Incoherent Thomson scattering can also be performed using a single port by measuring backscattered radiation in a LIDAR configuration. Measurements are spatially resolved by the time of flight; backscattered radiation from points further from the detector will arrive later. The spatial resolution in LIDAR systems is largely determined by the laser pulse duration, and sub-nanosecond pulse durations are not uncommon. The maximum achievable pulse intensity and small Thomson scattering cross-section limit the achievable spatial resolution. As with pulsed polarimetry diagnostics, the commercial availability of high-intensity chirped pulse amplification sources has dramatically improved the spatial resolution that can be achieved.
 
+\subsection{Coherent Thomson Scattering}
+
+Coherent Thomson scattering occurs when the scattering wavelength covers multiple Debye lengths and resonant plasma fluctuations are observed. In this regime, the collective plasma effects can be observed to discern ion  temperature and density information as well as electron temperature. Rather than considering the scattering from an individual electron, the coherent effect must be computed as an integral over many electrons in a finite volume. The full calculation of the scattered power spectrum for a monoenergetic source is given in \citep{https://doi.org/10.1029/JZ065i009p02635}, and can be used to fit the observed scattered spectrum to accurately determine the electron temperature and density. The Thomson-scattered power is proportional to $1 - \sin ^2 \theta \cos ^2 \beta$, where $\theta$ is the angle between the laser and collection optics and $\beta$ is the angle of incident polarization relative to the scattering plane. Observation at an angle of $90^\circ$ with respect to the laser path gives the highest signal intensity, as does polarization of the laser within the scattering plane. Because $k \lambda_{De}$ decreases with decreased angle of incidence, forward scattering may be preferred to reach the coherent regime in low density plasmas where a sufficiently long laser wavelength is not feasible.
+
+While we only observe scattering Thomson scattering from the electrons, because the plasma fluctuations occur over many particles the oscillations will also contain elusive information about the properties of the ions. As long as $Z T_e / T_i > k^2 \lambda _{De} ^2$, collective ion-acoustic features can be observed in the form of two  counter-propagating ion-acoustic waves. The wavelength separation between the ion-acoustic features is approximately
+\begin{equation*}
+\frac{\Delta \lambda}{\lambda_0} = \frac{4}{c} \sin \left( \frac{\theta}{2} \right) \sqrt{ \frac{ k_b T_e}{m_i} \left[ \frac{Z}{(1 + k ^2 \lambda_{De} ^2)} + \frac{3 T_i}{T_e}\right]}
+\end{equation*}
+where $m_i$ is the ion mass, $T_i$ is the ion temperature, $T_e$ is the electron temperature, and $Z$ is the ion charge. This is one of the few available direct measurements of the ion temperature. The ion bulk velocity can also be determined by measuring the Doppler shift in these features. In practice, impurities present in the plasma will tend to distort the observed spectrum, making accurate, unambiguous determination of the ion temperature challenging. Even so, the technique is currently in use to measure the ion temperature and velocity in tokamak experiments (ASDEX) and Hall thruster diagnostics (PRAXIS).
+
 \section{VISAR}
 
-{\Large TODO \par}
-\citep{doi:10.1063/1.1660986}
+A ``Velocity Interferometer System for Any Reflector'' (VISAR) is a diagnostic tool for measuring the velocity of fast-moving surfaces, often used to measure shock propagation in inertial confinement fusion research. As a velocity interferometry system, it computes the phase shift of light reflected from a fast-moving surface, which in turn is used to determine the velocity of the surface. Unlike most velocity interferometry measurements, VISAR is effective for diffuse, un-coated surfaces. The conventional VISAR system (shown in Figure \ref{fig:visar}) is comprised of a pair of wide-angle Michelson interferometers operating on different polarizations of light reflected from the moving surface. A wave plate in one leg of the interferometer adds a $90^\circ$ phase shift between the two polarizations. A third detector monitors the raw intensity of the input light.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{visar.pdf}
+  \caption{Diagram of the conventional VISAR setup, showing beam intensity monitor (BIM), beam splitter (BS), 1/8 wave plate (WP), etalon (E), mirrors (M1, M2), polarizing beam splitter (PBS), and detectors (D1, D2). From \citep{10.2172/886901}.}
+\label{fig:visar}
+\end{figure}
+In this configuration, the phase of the input light $\phi(t)$ can be computed by plotting the intensities measured at the detectors $D1$ and $D2$ normalized by the beam intensity monitor signal on an ellipse defined by:
+\begin{equation*}
+D_x \equiv \frac{D_1(t)}{D_{BIM} (t)} \qquad D_y \equiv \frac{D_2 (t)}{D_{BIM}(t)} \qquad \tan \phi (t) = \tan \epsilon + \frac{D_y (t) - y_0 }{D_x (t) - x_0} A \sec \epsilon
+\end{equation*}
+where $x_0$, $y_0$, $A$, and $\epsilon$ are independent of the input power. Because the interferometer signal is normalized by the beam intensity monitor, the setup is insensitive to variations of the input intensity. This is what allows for velocity measurements of diffuse surfaces. The expression for $\tan \phi$ (in contrast to $\cos \phi$ for a single Michelson interferometer) makes it possible to remove the sign ambiguity from $\phi$ and distinguish velocities towards and away from the detector.
+
+One drawback to the conventional VISAR setup is that only half of the incident light reaches the detectors, while the rest is lost to the opposite side of the beam splitter. We can add an additional VISAR on the other side of the beam splitter in place of the beam intensity monitor, generating a second set of signals very similar to the first pair. By pairwise subtracting the signals using electronic differential amplifiers (to impart a $180^\circ$ phase shift), the result is known as a push-pull VISAR. The phase of the input light can then be calculated from the resulting pair of signals in the same manner as a conventional VISAR. The additional light efficiency can improve the noise efficiency of the VISAR by approximately $40\%$ over a conventional VISAR, and if properly balanced is insensitive to variations in the input intensity and incoherent light \citep{10.2172/886901}. The push-pull VISAR has largely supplanted conventional VISAR in most applications.
 
 \section{Pulsed Polarimetry}
 
-A promising new magnetic field diagnostic is a LiDAR-like method known as fast-pulsed polarimetry. This method has the potential to resolve some of the most severe limitations of Faraday rotation measurements, providing spatially resolved measurements without the need for inversion of chord-integrated data. The technique combines standard Faraday rotation polarimetry \citep{Pisarczyk1990} and  with a pulsed ranging detection scheme in order to 
+A promising new magnetic field diagnostic is a LIDAR-like method known as fast-pulsed polarimetry. This method has the potential to resolve some of the most severe limitations of Faraday rotation measurements, providing spatially resolved measurements without the need for inversion of chord-integrated data. The technique combines standard Faraday rotation polarimetry \citep{Pisarczyk1990} and  with a pulsed ranging detection scheme in order to 
 
-LiDAR (Light Detection and Ranging) has long been used to generate spatial profiles of distant objects by recording reflections from a pulsed laser source. Devices capable of high power chirped pulse amplification \citep{STRICKLAND1985219} are now available, opening the door to apply pulsed ranging schemes to dense energetic plasmas with millimeter spatial resolution.
+LIDAR (Light Detection and Ranging) has long been used to generate spatial profiles of distant objects by recording reflections from a pulsed laser source. Devices capable of high power chirped pulse amplification \citep{STRICKLAND1985219} are now available, opening the door to apply pulsed ranging schemes to dense energetic plasmas with millimeter spatial resolution.
 
 {\Large TODO \par}
 
@@ -291,9 +307,7 @@ Three of the most common types of scintillating materials used for fast neutron 
 
 A high gain photodetector must be paired with the scintillator to convert detection events into a measurable voltage pulse. The detection peak of the photomultiplier should match the emission peak of the scintillator. Scintillation detectors will commonly use photomultiplier tubes (PMT) or silicon photomultipliers (SiPM). Photomultiplier tubes are typically less expensive than SiPMs, less sensitive to temperature, and feature higher gain, but are more fragile, require constant high voltage supply, are more sensitive to magnetic fields, and have a higher active area per dead time.
 
-\section{Ex Situ Diagnostics}
-
-\subsection{X-ray Photoelectron Spectroscopy (XPS)}
+\section{X-ray Photoelectron Spectroscopy (XPS)}
 
 X-ray photoelectron spectroscopy (XPS), also known as electron spectroscopy for chemical analysis (ESCA), is a commonly-used technique for determining elemental composition and electronic state of the surface of a material sample. The sample is placed in vacuum and irradiated by monoenergetic x-rays, which transfer their energy to and liberate bound electrons via the photoelectric effect. For incident x-rays with energy $h \nu$, the kinetic energy of the liberated photoelectron is given by:
 
